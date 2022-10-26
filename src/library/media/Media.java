@@ -3,9 +3,9 @@ package library.media;
 import java.time.LocalDate;
 
 abstract class Media implements Comparable<Media> {
-    private LocalDate publishedDate;
-    private String creator;
-    private String title;
+    protected LocalDate publishedDate;
+    protected String creator;
+    protected String title;
 
     // Abstract methods
     abstract boolean setCreator(String creator); // Sets private String creator; returns True if properly set
