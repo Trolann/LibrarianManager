@@ -8,7 +8,6 @@ abstract class Media implements Comparable<Media> {
     private String title;
 
     // Abstract methods
-    abstract String getCreator(); // Gets private String creator;
     abstract boolean setCreator(String creator); // Sets private String creator; returns True if properly set
 
     @Override
@@ -18,6 +17,8 @@ abstract class Media implements Comparable<Media> {
     }
 
     // Settings and getters be below
+    public String getCreator() { return this.creator; } // Gets private String creator;
+
     public LocalDate getPublishedDate() {
         return publishedDate;
     }
