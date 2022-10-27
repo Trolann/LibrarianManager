@@ -1,7 +1,8 @@
 package library.roles;
+import library.media.Media;
 
 public interface RoleActions {
-    boolean checkIn();
-    boolean checkOut();
-    boolean list(); // Returns media checked out by Role or available Media from Librarian
+    boolean checkIn(Media o);
+    boolean checkOut(Media o);
+    Media[] list(); // Returns media checked out by Role or available Media from Librarian
 }

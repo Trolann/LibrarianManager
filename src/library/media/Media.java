@@ -2,10 +2,25 @@ package library.media;
 
 import java.time.LocalDate;
 
-abstract class Media implements Comparable<Media> {
+public abstract class Media implements Comparable<Media> {
     protected LocalDate publishedDate;
     protected String creator;
     protected String title;
+
+    // Constructors
+    public Media(LocalDate date, String mediaTitle) {
+        publishedDate = date;
+        title = mediaTitle;
+    }
+    public Media(LocalDate date) {
+        publishedDate = date;
+    }
+    public Media(String mediaTitle) {
+        title = mediaTitle;
+    }
+    public Media() {
+        // default constructor, nothing here in case concrete classes
+    }
 
     // Abstract methods
     abstract boolean setCreator(String creator); // Sets private String creator; returns True if properly set
