@@ -7,19 +7,10 @@ public abstract class Media implements Comparable<Media> {
     protected String creator;
     protected String title;
 
-    // Constructors
+    // Constructor - Media must be made with the Title and publishedDate in order to facilitate comparing
     public Media(LocalDate date, String mediaTitle) {
         publishedDate = date;
         title = mediaTitle;
-    }
-    public Media(LocalDate date) {
-        publishedDate = date;
-    }
-    public Media(String mediaTitle) {
-        title = mediaTitle;
-    }
-    public Media() {
-        // default constructor, nothing here in case concrete classes
     }
 
     // Abstract methods
