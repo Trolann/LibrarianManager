@@ -6,6 +6,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Objects;
 import java.util.Scanner;
 
@@ -17,12 +18,13 @@ public class Video extends Media implements LibraryFunctions {
 
     // This Constructor takes in an entire line from the library file and parses it
     public Video(String inputLine) {
-        super();
-        String[] values = inputLine.split(",");
-        this.title = values[1];
-        this.creator = values[2];
-        this.videoDirector = values[2];
-        this.videoStarActor = values[3];
+        super(); // Must be first
+        String[] values = inputLine.split(",", -1); // Split into known value locations
+        this.checkedIn = values[1].equals("in");
+        this.title = values[2];
+        this.creator = values[3];
+        this.videoDirector = values[3];
+        this.videoStarActor = values[4];
         try {
             this.videoRating = Integer.parseInt(values[5]);
         } catch (NumberFormatException e) {
@@ -79,10 +81,9 @@ public class Video extends Media implements LibraryFunctions {
     @Override
     public String toString() {
         return "Video{" +
-                "fiveStarRating=" + videoRating +
-                ", runtimeMinutes=" + videoRuntime +
-                ", creator='" + creator + '\'' +
+                "creator='" + creator + '\'' +
                 ", title='" + title + '\'' +
+                ", checkedIn=" + checkedIn +
                 '}';
     }
 
