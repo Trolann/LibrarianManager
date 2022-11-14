@@ -1,7 +1,12 @@
 package library.media;
 import library.LibraryFunctions;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.Objects;
+import java.util.Scanner;
 
 public class Video extends Media implements LibraryFunctions {
     private String videoDirector;
@@ -102,13 +107,62 @@ public class Video extends Media implements LibraryFunctions {
         return Objects.hash(getVideoDirector(), getVideoStarActor(), getVideoRating(), getVideoRuntime());
     }
 
+    // Interface function which is a wrapper for the checkInOut function
     @Override
     public boolean checkIn(){
-        return true;
+        return _checkInOut(true);
     }
 
+    // Interface function which is a wrapper for the checkInOut function
     @Override
     public boolean checkOut(){
+        return _checkInOut(false);
+    }
+
+    // Single function to open a file and rewrite to it. Boolean determines the value
+    // for this particular Video file
+    private boolean _checkInOut(boolean checkInMedia) {
+        File libraryFile = new File(this.getLibraryFileName());
+        Scanner fileScanner = null; // Assigned to quiet down IDE warnings
+        String nextLine;
+        ArrayList<String> fileLines = new ArrayList<String>();
+        String newAvailabilityValue = checkInMedia ? "in" : "out";
+        String oldAvailabilityValue = checkInMedia ? "out" : "in";
+
+        try {
+            fileScanner = new Scanner(libraryFile);
+        } catch (FileNotFoundException e) {
+            System.out.println(this.getLibraryFileName() + " was not found.");
+            return false;
+        }
+
+        while(fileScanner.hasNextLine()) {
+            Scanner lineScanner = new Scanner(fileScanner.nextLine());
+
+            while (lineScanner.hasNext()) {
+                // Get the next value, store in string to be safe
+                nextLine = lineScanner.next();
+
+                if(nextLine.indexOf(this.title) > 0) {
+                    nextLine = nextLine.replace(oldAvailabilityValue, newAvailabilityValue);
+                }
+
+                fileLines.add(nextLine);
+            }
+            lineScanner.close();
+        }
+        fileScanner.close();
+
+
+        // Writes all contents back to the file. Automatically closes
+        try (PrintWriter fileWriter = new PrintWriter(libraryFile)) {
+            for(String line : fileLines) {
+                fileWriter.println(line);
+            }
+        } catch (FileNotFoundException e) {
+            return false;
+        }
+
         return true;
     }
 }
