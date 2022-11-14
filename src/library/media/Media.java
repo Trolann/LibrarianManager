@@ -3,7 +3,6 @@ package library.media;
 
 public abstract class Media implements Comparable<Media> {
 
-    public final String libraryFileName = "library.txt";
     protected String creator;
     protected String title;
     protected boolean checkedIn;
@@ -45,10 +44,6 @@ public abstract class Media implements Comparable<Media> {
 
     public void setTitle(String title) {
         this.title = title;
-    }
-
-    public String getLibraryFileName() {
-        return libraryFileName;
     }
 
 }

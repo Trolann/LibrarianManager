@@ -1,5 +1,6 @@
 package library.media;
 import library.LibraryFunctions;
+import library.Utility;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -113,7 +114,7 @@ public class Video extends Media implements LibraryFunctions {
     // Single function to open a file and rewrite to it. Boolean determines the value
     // for this particular Video file
     private boolean _checkInOut(boolean checkInMedia) {
-        File libraryFile = new File(this.getLibraryFileName());
+        File libraryFile = new File(library.Utility.getLibraryFileName());
         Scanner fileScanner = null; // Assigned to quiet down IDE warnings
         String nextLine;
         ArrayList<String> fileLines = new ArrayList<String>();
@@ -123,7 +124,7 @@ public class Video extends Media implements LibraryFunctions {
         try {
             fileScanner = new Scanner(libraryFile);
         } catch (FileNotFoundException e) {
-            System.out.println(this.getLibraryFileName() + " was not found.");
+            System.out.println(library.Utility.getLibraryFileName() + " was not found.");
             return false;
         }
 
