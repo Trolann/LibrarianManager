@@ -1,7 +1,9 @@
 package library.media;
+import library.LibraryFunctions;
+
 import java.util.Objects;
 
-public class Video extends Media {
+public class Video extends Media implements LibraryFunctions {
     private String videoDirector;
     private String videoStarActor;
     private int videoRating;
@@ -98,5 +100,15 @@ public class Video extends Media {
     @Override
     public int hashCode() {
         return Objects.hash(getVideoDirector(), getVideoStarActor(), getVideoRating(), getVideoRuntime());
+    }
+
+    @Override
+    public boolean checkIn(){
+        return true;
+    }
+
+    @Override
+    public boolean checkOut(){
+        return true;
     }
 }
