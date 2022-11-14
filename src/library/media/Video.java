@@ -34,15 +34,6 @@ public class Video extends Media implements LibraryFunctions {
         }
     }
 
-    // This constructor generates Video objects from already parsed values
-    public Video(String mediaTitle, String videoDirector, String videoStarActor, int videoRating, int videoRuntime) {
-        super(mediaTitle, videoDirector);
-        this.videoDirector = videoDirector;
-        this.videoStarActor = videoStarActor;
-        this.videoRating = videoRating;
-        this.videoRuntime = videoRuntime;
-    }
-
     public String getVideoDirector() {
         return videoDirector;
     }
