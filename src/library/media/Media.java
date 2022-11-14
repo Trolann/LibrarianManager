@@ -14,6 +14,11 @@ public abstract class Media implements Comparable<Media> {
         this.title = mediaTitle;
     }
 
+    public Media() {
+        this.creator = "";
+        this.title = "";
+    }
+
     // Abstract methods
     abstract boolean setCreator(String creator); // Sets private String creator; returns True if properly set
 
