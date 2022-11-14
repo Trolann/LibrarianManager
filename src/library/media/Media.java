@@ -22,6 +22,10 @@ public abstract class Media implements Comparable<Media> {
         this.checkedIn = false;
     }
 
+    public boolean isCheckedIn() {
+        return checkedIn;
+    }
+
     // Abstract methods
     abstract boolean setCreator(String creator); // Sets private String creator; returns True if properly set
 
