@@ -90,12 +90,12 @@ public class Video extends Media implements LibraryFunctions {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Video video = (Video) o;
-        return this.videoDirector.equals(video.videoDirector);
+        return this.title.equals(video.getTitle());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getVideoDirector(), getVideoStarActor(), getVideoRating(), getVideoRuntime());
+        return Objects.hash(this.title);
     }
 
     // Interface function which is a wrapper for the checkInOut function
