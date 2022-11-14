@@ -1,16 +1,15 @@
 package library.media;
 
-import java.time.LocalDate;
 
 public abstract class Media implements Comparable<Media> {
-    protected LocalDate publishedDate;
     protected String creator;
     protected String title;
 
     // Constructor - Media must be made with the Title and publishedDate in order to facilitate comparing
-    public Media(LocalDate date, String mediaTitle) {
-        publishedDate = date;
-        title = mediaTitle;
+    // This constructor is called by each subclass's constructor, so setting creator and title is not needed.
+    public Media(String mediaTitle, String creator) {
+        this.creator = creator;
+        this.title = mediaTitle;
     }
 
     // Abstract methods
@@ -19,18 +18,11 @@ public abstract class Media implements Comparable<Media> {
     @Override
     public int compareTo(Media media) {
         // Subclass objects are cast to Media and compared with LocalDates' built-in compareTo().
-        return this.publishedDate.compareTo(media.publishedDate);
+        return this.title.compareTo(media.title);
     }
 
-    // Settings and getters be below
-    public String getCreator() { return this.creator; } // Gets private String creator;
-
-    public LocalDate getPublishedDate() {
-        return publishedDate;
-    }
-
-    public void setPublishedDate(LocalDate publishedDate) {
-        this.publishedDate = publishedDate;
+    public String getCreator() {
+        return creator;
     }
 
     public String getTitle() {
@@ -40,5 +32,4 @@ public abstract class Media implements Comparable<Media> {
     public void setTitle(String title) {
         this.title = title;
     }
-
 }
