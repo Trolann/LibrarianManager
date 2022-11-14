@@ -1,5 +1,6 @@
 package library;
 
+import library.media.AudioBook;
 import library.media.Media;
 import library.media.Video;
 
@@ -47,6 +48,7 @@ public class Utility {
             while (lineScanner.hasNext()) {
                 // Get the next value, store in string to be safe
                 nextLine = lineScanner.next();
+                System.out.println(nextLine);
                 String[] splitValues = nextLine.split(",");
 
 
@@ -55,7 +57,7 @@ public class Utility {
                 switch(splitValues[0]) {
                     // Starts with..  ..add to return ...and auto-cast to Media
                     case "video" -> { returnList.add(new Video(nextLine)); }
-                    // case "audiobook" -> { returnList.add(new Video(nextLine)); }
+                    case "audiobook" -> { returnList.add(new AudioBook(nextLine)); }
                     // Add additional Media objects below, update type and Type
                     // case "type" -> { returnList.add(new Type(nextLine)); }
                 }

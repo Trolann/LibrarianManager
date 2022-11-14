@@ -12,3 +12,18 @@ video,in,Shang-Chi and the Legend of the Ten Rings,Destin Daniel Cretton,Simu Li
 video,out,Snake Eyes: G.I. Joe Origins,Robert Schwentke,Henry Golding,121,6.9
 video,in,The Vault,Jaume Balagueró,Freddie Highmore,118,7.1
 video,out,The Deep House,Alexandre Bustillo,Camille Rowe,85,5.5
+audiobook,in,Think Like a Monk: The Secret of How to Harness the Power of Positivity and Be Happy Now,Jay Shetty,Unknown,654,4.9
+audiobook,in,Ikigai: The Japanese Secret to a Long and Happy Life,Héctor García,Unknown,103,4.6
+audiobook,in,The Subtle Art of Not Giving a F*ck: A Counterintuitive Approach to Living a Good Life,Mark Manson,Unknown,467,4.4
+audiobook,in,Atomic Habits: An Easy and Proven Way to Build Good Habits and Break Bad Ones,James Clear,Unknown,485,4.6
+audiobook,in,Life's Amazing Secrets: How to Find Balance and Purpose in Your Life,Gaur Gopal Das,Unknown,505,4.6
+audiobook,out,Sapiens,Yuval Noah Harari,Unknown,918,4.6
+audiobook,in,Extraordinary Leadership,Robin Sharma,Unknown,66,4.1
+audiobook,in,The Intelligent Investor Rev Ed.,Benjamin Graham,Unknown,1068,4.4
+audiobook,out,Rich Dad Poor Dad: What the Rich Teach Their Kids About Money - That the Poor and Middle Class Do Not!,Robert T. Kiyosaki,Unknown,369,4.5
+audiobook,in,The 5AM Club: Own Your Morning. Elevate Your Life.,Robin Sharma,Unknown,664,4.4
+audiobook,in,Influence: The Psychology of Persuasion,Robert B. Cialdini,Unknown,606,4.4
+audiobook,out,Dream With Your Eyes Open: An Entrepreneurial Journey,Ronnie Screwvala,Unknown,439,3.6
+audiobook,in,The Sandman,Neil Gaiman,Unknown,654,5
+audiobook,in,How to Win Friends and Influence People,Dale Carnegie,Unknown,485,4.5
+audiobook,out,The Alchemist: A Fable About Following Your Dream,Paulo Coelho,Unknown,240,4.6

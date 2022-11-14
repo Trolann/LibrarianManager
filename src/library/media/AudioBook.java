@@ -6,81 +6,82 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Objects;
 import java.util.Scanner;
 
-public class Video extends Media implements LibraryFunctions {
-    private String videoDirector;
-    private String videoStarActor;
-    private int videoRating;
-    private int videoRuntime;
+public class AudioBook extends Media implements LibraryFunctions {
+    private String bookAuthor;
+    private String readBy;
+    private int bookRating;
+    private int listeningTime;
 
     // This Constructor takes in an entire line from the library file and parses it
-    public Video(String inputLine) {
+    public AudioBook(String inputLine) {
         super(); // Must be first
-        String[] values = inputLine.split(",", -1); // Split into known value locations
+
+        String[] values = inputLine.split("\\s*,\\s*", -1); // Split into known value locations
+
         this.checkedIn = values[1].equals("in");
         this.title = values[2];
         this.creator = values[3];
-        this.videoDirector = values[3];
-        this.videoStarActor = values[4];
+        this.bookAuthor = values[3];
+        this.readBy = values[4];
         try {
-            this.videoRating = Integer.parseInt(values[5]);
+            this.bookRating = Integer.parseInt(values[5]);
         } catch (NumberFormatException e) {
-            this.videoRating = -1;
+            this.bookRating = -1;
         }
         try {
-            this.videoRuntime = Integer.parseInt(values[6]);
+            this.listeningTime = Integer.parseInt(values[6]);
         } catch (NumberFormatException e) {
-            this.videoRuntime = -1;
+            this.listeningTime = -1;
         }
     }
 
-    public String getVideoDirector() {
-        return videoDirector;
+    public String getBookAuthor() {
+        return bookAuthor;
     }
 
-    public void setVideoDirector(String videoDirector) {
-        this.videoDirector = videoDirector;
+    public void setBookAuthor(String bookAuthor) {
+        this.bookAuthor = bookAuthor;
     }
 
-    public String getVideoStarActor() {
-        return videoStarActor;
+    public String getReadBy() {
+        return readBy;
     }
 
-    public void setVideoStarActor(String videoStarActor) {
-        this.videoStarActor = videoStarActor;
+    public void setReadBy(String readBy) {
+        this.readBy = readBy;
     }
 
-    public int getVideoRating() {
-        return videoRating;
+    public int getBookRating() {
+        return bookRating;
     }
 
-    public void setVideoRating(int videoRating) {
-        this.videoRating = videoRating;
+    public void setBookRating(int bookRating) {
+        this.bookRating = bookRating;
     }
 
-    public int getVideoRuntime() {
-        return videoRuntime;
+    public int getListeningTime() {
+        return listeningTime;
     }
 
-    public void setVideoRuntime(int videoRuntime) {
-        this.videoRuntime = videoRuntime;
+    public void setListeningTime(int listeningTime) {
+        this.listeningTime = listeningTime;
     }
 
     @Override
     boolean setCreator(String creator) {
-        if (this.videoDirector.equals("")) {
+        if (this.bookAuthor.equals("")) {
             return false; // Unable to set the creator.
         }
-        this.creator = this.videoDirector;
+        this.creator = this.bookAuthor;
         return true;
     }
 
     @Override
     public String toString() {
-        return "Video{" +
+        return "Audiobook{" +
                 "creator='" + creator + '\'' +
                 ", title='" + title + '\'' +
                 ", checkedIn=" + checkedIn +
@@ -91,7 +92,7 @@ public class Video extends Media implements LibraryFunctions {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Video video = (Video) o;
+        AudioBook video = (AudioBook) o;
         return this.title.equals(video.getTitle());
     }
 
@@ -115,7 +116,7 @@ public class Video extends Media implements LibraryFunctions {
     // Single function to open a file and rewrite to it. Boolean determines the value
     // for this particular Video file
     private boolean _checkInOut(boolean checkInMedia) {
-        File libraryFile = new File(library.Utility.getLibraryFileName());
+        File libraryFile = new File(Utility.getLibraryFileName());
         Scanner fileScanner = null; // Assigned to quiet down IDE warnings
         String nextLine;
         ArrayList<String> fileLines = new ArrayList<String>();
@@ -125,7 +126,7 @@ public class Video extends Media implements LibraryFunctions {
         try {
             fileScanner = new Scanner(libraryFile);
         } catch (FileNotFoundException e) {
-            System.out.println(library.Utility.getLibraryFileName() + " was not found.");
+            System.out.println(Utility.getLibraryFileName() + " was not found.");
             return false;
         }
 
