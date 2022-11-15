@@ -27,33 +27,33 @@ audiobook,out,Dream With Your Eyes Open: An Entrepreneurial Journey,Ronnie Screw
 audiobook,in,The Sandman,Neil Gaiman,Unknown,654,5
 audiobook,in,How to Win Friends and Influence People,Dale Carnegie,Unknown,485,4.5
 audiobook,out,The Alchemist: A Fable About Following Your Dream,Paulo Coelho,Unknown,240,4.6
-Newspaper,in,The Evolution of Kratos,Alyse Stanley,02671905,The Washington Post,2022-11-13
-Newspaper,in,The tech CEO spending millions to stop Elon Musk,Gerrit De Vynck,01426001,USA Today,2022-11-13
-Newspaper,out,Facebook thought pandemic online shopping would last forever. It didn’t.,Naomi Nix and Jaclyn Peiser,18686311,New York Times,2022-11-10
-Newspaper,out,How to avoid falling for and spreading misinformation online,Heather Kelly,17381460,Los Angeles Times,2022-11-09
-Newspaper,out,How Facebook and TikTok are helping push Stop the Steal in Brazil,Elizabeth Dwoskin,22060979,New York Post,2022-10-29
-Newspaper,in,Why G4 failed,Newsday,20493630,Nathan Grayson,2022-10-21
-Newspaper,in,Biden issues order boosting privacy checks for data flows from Europe,Cristiano Lima,01550640,Chicago Tribune,2022-10-07
-Newspaper,in,I have a work phone. Can I keep my phone number if I leave my job?,Danielle Abril,21879036,The Wall Street Journal,2022-09-30
-Newspaper,in,Is crypto a house of cards?,Steven Zeitchik,17101131,Tampa Bay Times,2022-09-22
-Newspaper,out,Is Amazon Prime worth it for you?,Heather Kelly and Rachel Lerman,09588221,Daily Herald,2022-09-15
-Newspaper,in,How T-Mobile and Space X are teaming up to give you coverage from space,Chris Velazco,02199874,The Washington Post,2022-08-30
-Newspaper,out,Amazon to shut down its Telehealth offering,Caroline O’Donovan,24345617,New York Post,2022-08-24
-Newspaper,out,This robot quarterback could be the future of football practice,Pranshu Verma,03178471,Los Angeles Times,2022-08-19
-Newspaper,in,Toddlers and technology: What every parent should decide early,Tatum Hunter,11448750,Chicago Tribune,2022-07-29
-Newspaper,in,Chinese posed as Texans on social media to attack rare earths rivals,01234560,Joseph Menn,Newsday,2022-06-28
-eTextbooks,out,Freedom Dreams : The Black Radical Imagination,Robin D.G. Kelley.,9780807009789,Beacon Press,2002-10-03
-eTextbooks,out,A theory of fun for game design,Raph Koster,9781449363178,A theory of fun for game design,2013-01-28
-eTextbooks,in,Cloud computing bible,Barrie Sosinsky,1118023994, Wiley,2011-06-17
-eTextbooks,in,The breadwinner,Deborah Ellis,1554980070,Douglas & McIntyre,2000-03-11
-eTextbooks,out,Coasts in Crisis : A Global Challenge,Gary Griggs,0520966856,University of California Press,2017-07-22
-eTextbooks,in,Hadoop security,Ben Spivey & Joey Echeverria,1491901349,O'Reilly Media,2015-11-07
-eTextbooks,in,Digital asset management,David Austerberry,1136033610,Focal Press,2006-09-23
-eTextbooks,in,Just mercy : a story of justice and redemption,Bryan Stevenson,9780812994537,Spiegel & Grau,2014-06-15
-eTextbooks,out,What is morphology?,Mark Aronoff and Kirsten Fudeman,1444351761,Wiley-Blackwell,2010-12-03
-eTextbooks,out,Occupation-based activity analysis,Heather Thomas,1630912093,SLACK Incorporated,2015-04-09
-eTextbooks,out,Sexuality : a very short introduction,Véronique Mottier,1281515345,Routledge,2008-10-25
-eTextbooks,in,After the Death of God,Gianni Vattimo,1282872125,Columbia University Press,2010-06-17
-eTextbooks,out,Smartphone video storytelling,Robb Montgomery,1351796550,Routledge,2018-04-25
-eTextbooks,in,Humanity a moral history of the twentieth century,Jonathan Glover,1283596857,Yale University Press,2012-05-12
-eTextbooks,out,Feminism is for everybody : passionate politics,Bell Hooks,1317588363,Routledge,2014-01-19
+newspaper,in,The Evolution of Kratos,Alyse Stanley,02671905,The Washington Post,2022-11-13
+newspaper,in,The tech CEO spending millions to stop Elon Musk,Gerrit De Vynck,01426001,USA Today,2022-11-13
+newspaper,out,Facebook thought pandemic online shopping would last forever. It didn’t.,Naomi Nix and Jaclyn Peiser,18686311,New York Times,2022-11-10
+newspaper,out,How to avoid falling for and spreading misinformation online,Heather Kelly,17381460,Los Angeles Times,2022-11-09
+newspaper,out,How Facebook and TikTok are helping push Stop the Steal in Brazil,Elizabeth Dwoskin,22060979,New York Post,2022-10-29
+newspaper,in,Why G4 failed,Newsday,20493630,Nathan Grayson,2022-10-21
+newspaper,in,Biden issues order boosting privacy checks for data flows from Europe,Cristiano Lima,01550640,Chicago Tribune,2022-10-07
+newspaper,in,I have a work phone. Can I keep my phone number if I leave my job?,Danielle Abril,21879036,The Wall Street Journal,2022-09-30
+newspaper,in,Is crypto a house of cards?,Steven Zeitchik,17101131,Tampa Bay Times,2022-09-22
+newspaper,out,Is Amazon Prime worth it for you?,Heather Kelly and Rachel Lerman,09588221,Daily Herald,2022-09-15
+newspaper,in,How T-Mobile and Space X are teaming up to give you coverage from space,Chris Velazco,02199874,The Washington Post,2022-08-30
+newspaper,out,Amazon to shut down its Telehealth offering,Caroline O’Donovan,24345617,New York Post,2022-08-24
+newspaper,out,This robot quarterback could be the future of football practice,Pranshu Verma,03178471,Los Angeles Times,2022-08-19
+newspaper,in,Toddlers and technology: What every parent should decide early,Tatum Hunter,11448750,Chicago Tribune,2022-07-29
+newspaper,in,Chinese posed as Texans on social media to attack rare earths rivals,01234560,Joseph Menn,Newsday,2022-06-28
+eTextbook,out,Freedom Dreams : The Black Radical Imagination,Robin D.G. Kelley.,9780807009789,Beacon Press,2002-10-03
+eTextbook,out,A theory of fun for game design,Raph Koster,9781449363178,A theory of fun for game design,2013-01-28
+eTextbook,in,Cloud computing bible,Barrie Sosinsky,1118023994, Wiley,2011-06-17
+eTextbook,in,The breadwinner,Deborah Ellis,1554980070,Douglas & McIntyre,2000-03-11
+eTextbook,out,Coasts in Crisis : A Global Challenge,Gary Griggs,0520966856,University of California Press,2017-07-22
+eTextbook,in,Hadoop security,Ben Spivey & Joey Echeverria,1491901349,O'Reilly Media,2015-11-07
+eTextbook,in,Digital asset management,David Austerberry,1136033610,Focal Press,2006-09-23
+eTextbook,in,Just mercy : a story of justice and redemption,Bryan Stevenson,9780812994537,Spiegel & Grau,2014-06-15
+eTextbook,out,What is morphology?,Mark Aronoff and Kirsten Fudeman,1444351761,Wiley-Blackwell,2010-12-03
+eTextbook,out,Occupation-based activity analysis,Heather Thomas,1630912093,SLACK Incorporated,2015-04-09
+eTextbook,out,Sexuality : a very short introduction,Véronique Mottier,1281515345,Routledge,2008-10-25
+eTextbook,in,After the Death of God,Gianni Vattimo,1282872125,Columbia University Press,2010-06-17
+eTextbook,out,Smartphone video storytelling,Robb Montgomery,1351796550,Routledge,2018-04-25
+eTextbook,in,Humanity a moral history of the twentieth century,Jonathan Glover,1283596857,Yale University Press,2012-05-12
+eTextbook,out,Feminism is for everybody : passionate politics,Bell Hooks,1317588363,Routledge,2014-01-19
