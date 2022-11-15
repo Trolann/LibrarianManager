@@ -143,7 +143,7 @@
         </constraints>
         <properties>
           <font size="18" style="1"/>
-          <text value="The person's name"/>
+          <text value="The creator's name"/>
         </properties>
       </component>
       <component id="5963d" class="javax.swing.JButton" binding="checkOutButton" default-binding="true">
