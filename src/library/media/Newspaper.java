@@ -8,80 +8,66 @@ import java.io.*;
 import java.util.Scanner;
 
 public class Newspaper extends Media implements LibraryFunctions {
+    private String newspaperPublisher;
+    private LocalDate newspaperReleasedDate;
+    private int newspaperISSN;
 
-    private String author;
-    private String publisher;
-    private LocalDate releasedDate;
-    private int ISSN;
 
     //Constructor
-    public Newspaper(String creator, String title, boolean checkedIn) {
-        super(creator, title, checkedIn);
+    public Newspaper(String inputLine) {
+        super(); // Must be first
+        String[] values = inputLine.split(",", -1); // Split into known value locations
+        this.checkedIn = values[1].equals("in");
+        this.title = values[2];
+        this.creator = values[3];
+        this.newspaperISSN = Integer.parseInt(values[4]);
+        this.newspaperPublisher = values[5];
+        this.newspaperReleasedDate = LocalDate.parse(values[6]);
     }
 
-    public void setAuthor(String author) {
-        this.author = author;
-    }
+        public void setNewspaperPublisher(String newspaperPublisher) {
+            this.newspaperPublisher = newspaperPublisher;
+        }
+        public String getNewspaperPublisher() {
+            return newspaperPublisher;
+        }
 
-    public String getAuthor() {
-        return author;
-    }
+        public void setNewspaperReleasedDate(LocalDate newspaperReleasedDate) {
+            this.newspaperReleasedDate = newspaperReleasedDate;
+        }
+        public LocalDate getNewspaperReleasedDate() {
+            return newspaperReleasedDate;
+        }
 
-    public void setPublisher(String publisher) {
-        this.publisher = publisher;
-    }
-
-    public String getPublisher() {
-        return publisher;
-    }
-
-    public void setReleasedDate(LocalDate releasedDate) {
-        this.releasedDate = releasedDate;
-    }
-
-    public LocalDate getReleasedDate() {
-        return releasedDate;
-    }
-
-    public void setISSN(int ISSN) {
-        this.ISSN = ISSN;
-    }
-
-    public int getISSN() {
-        return ISSN;
-    }
-
-    @Override
-    boolean setCreator(String creator) {
-        if (this.author.equals(""))
-            return false;
-        this.creator = this.author;
-        return true;
-    }
+        public void setNewspaperISSN(int newspaperISSN) {
+            this.newspaperISSN = newspaperISSN;
+        }
+        public int getNewspaperISSN() {
+            return newspaperISSN;
+        }
 
     @Override
     public String toString() {
         return "Newspaper{" +
-                "author='" + author + '\'' +
-                ", publisher='" + publisher + '\'' +
-                ", releasedDate=" + releasedDate +
-                ", ISSN=" + ISSN +
+                "newspaperPublisher='" + newspaperPublisher + '\'' +
+                ", newspaperReleasedDate=" + newspaperReleasedDate +
+                ", newspaperISSN=" + newspaperISSN +
                 '}';
     }
+
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Newspaper)) return false;
-        Newspaper newspaper = (Newspaper) o;
-        return getISSN() == newspaper.getISSN() && getAuthor().equals(newspaper.getAuthor()) &&
-                getPublisher().equals(newspaper.getPublisher()) &&
-                getReleasedDate().equals(newspaper.getReleasedDate());
+        if (!(o instanceof Newspaper newspaper)) return false;
+        return getNewspaperISSN() == newspaper.getNewspaperISSN() &&
+                getNewspaperPublisher().equals(newspaper.getNewspaperPublisher()) &&
+                getNewspaperReleasedDate().equals(newspaper.getNewspaperReleasedDate());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getAuthor(), getPublisher(), getReleasedDate(), getISSN());
+        return Objects.hash(getNewspaperPublisher(), getNewspaperReleasedDate(), getNewspaperISSN());
     }
 
     @Override
@@ -133,4 +119,8 @@ public class Newspaper extends Media implements LibraryFunctions {
         return false;
     }
 
+    @Override
+    String displayInfo() {
+        return null;
+    }
 }

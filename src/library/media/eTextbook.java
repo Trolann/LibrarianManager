@@ -6,79 +6,63 @@ import java.time.LocalDate;
 import java.util.Objects;
 
 public class eTextbook extends Media implements LibraryFunctions {
+    private String eTextbookPublisher;
+    private LocalDate eTextbookReleasedDate;
+    private int eTextbookISBN;
 
-    private String author;
-    private String publisher;
-    private LocalDate releasedDate;
-    private int ISBN;
-
-    public eTextbook(String creator, String title, boolean checkedIn) {
-        super(creator, title, checkedIn);
+    public eTextbook(String inputLine) {
+        super();
+        String[] values = inputLine.split(",");
+        this.checkedIn = values[1].equals("in");
+        this.title = values[2];
+        this.creator = values[3];
+        this.eTextbookISBN = Integer.parseInt(values[4]);
+        this.eTextbookPublisher = values[5];
+        this.eTextbookReleasedDate = LocalDate.parse(values[6]);
     }
 
-    public void setAuthor(String author) {
-        this.author = author;
+    public void seteTextbookPublisher(String eTextbookPublisher) {
+        this.eTextbookPublisher = eTextbookPublisher;
+    }
+    public String geteTextbookPublisher() {
+        return eTextbookPublisher;
     }
 
-    public String getAuthor() {
-        return author;
+    public void seteTextbookReleasedDate(LocalDate eTextbookReleasedDate) {
+        this.eTextbookReleasedDate = eTextbookReleasedDate;
+    }
+    public LocalDate geteTextbookReleasedDate() {
+        return eTextbookReleasedDate;
     }
 
-    public void setPublisher(String publisher) {
-        this.publisher = publisher;
+    public void seteTextbookISBN(int eTextbookISBN) {
+        this.eTextbookISBN = eTextbookISBN;
     }
-
-    public String getPublisher() {
-        return publisher;
-    }
-
-    public void setReleasedDate(LocalDate releasedDate) {
-        this.releasedDate = releasedDate;
-    }
-
-    public LocalDate getReleasedDate() {
-        return releasedDate;
-    }
-
-    public void setISBN(int ISBN) {
-        this.ISBN = ISBN;
-    }
-
-    public int getISBN() {
-        return ISBN;
-    }
-
-    @Override
-    boolean setCreator(String creator) {
-        if (this.author.equals(""))
-            return false;
-        this.creator = this.author;
-        return true;
+    public int geteTextbookISBN() {
+        return eTextbookISBN;
     }
 
     @Override
     public String toString() {
         return "eTextbook{" +
-                "author='" + author + '\'' +
-                ", publisher='" + publisher + '\'' +
-                ", releasedDate=" + releasedDate +
-                ", ISBN=" + ISBN +
+                "eTextbookPublisher='" + eTextbookPublisher + '\'' +
+                ", eTextbookReleasedDate=" + eTextbookReleasedDate +
+                ", eTextbookISBN=" + eTextbookISBN +
                 '}';
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof eTextbook)) return false;
-        eTextbook eTextbook = (library.media.eTextbook) o;
-        return getISBN() == eTextbook.getISBN() && getAuthor().equals(eTextbook.getAuthor()) &&
-                getPublisher().equals(eTextbook.getPublisher()) &&
-                getReleasedDate().equals(eTextbook.getReleasedDate());
+        if (!(o instanceof eTextbook eTextbook)) return false;
+        return geteTextbookISBN() == eTextbook.geteTextbookISBN() &&
+                geteTextbookPublisher().equals(eTextbook.geteTextbookPublisher()) &&
+                geteTextbookReleasedDate().equals(eTextbook.geteTextbookReleasedDate());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getAuthor(), getPublisher(), getReleasedDate(), getISBN());
+        return Objects.hash(geteTextbookPublisher(), geteTextbookReleasedDate(), geteTextbookISBN());
     }
 
     @Override
@@ -89,5 +73,10 @@ public class eTextbook extends Media implements LibraryFunctions {
     @Override
     public boolean checkOut() {
         return false;
+    }
+
+    @Override
+    String displayInfo() {
+        return null;
     }
 }
