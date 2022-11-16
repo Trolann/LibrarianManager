@@ -36,6 +36,11 @@ public class Video extends Media implements LibraryFunctions {
         }
     }
 
+    @Override
+    public String displayInfo() {
+        return this.getTitle() + "Directed by: " + this.getVideoDirector();
+    }
+
     public String getVideoDirector() {
         return videoDirector;
     }
@@ -66,15 +71,6 @@ public class Video extends Media implements LibraryFunctions {
 
     public void setVideoRuntime(int videoRuntime) {
         this.videoRuntime = videoRuntime;
-    }
-
-    @Override
-    boolean setCreator(String creator) {
-        if (this.videoDirector.equals("")) {
-            return false; // Unable to set the creator.
-        }
-        this.creator = this.videoDirector;
-        return true;
     }
 
     @Override
