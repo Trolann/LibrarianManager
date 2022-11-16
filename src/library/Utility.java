@@ -77,11 +77,18 @@ public class Utility {
         return returnList;
     }
 
-//    public Media getRandom(){
-//        Random r = new Random();
-//        int totalLength = listMedia().size();
-//        int randomNumber = r.nextInt(totalLength);
-//
-//
-//    }
+    // returns a random Media
+    public Media getRandom(){
+        Map<String, Media> mediaList = listMedia();
+        Random r = new Random(); // get a random number
+        int totalLength = mediaList.size();
+        int randomNumber = r.nextInt(totalLength); // bound random number by total length go hashmap
+
+        for (Map.Entry<String, Media> entry : mediaList.entrySet()) {
+            if (randomNumber == 0) {
+                return entry.getValue(); // return current iteration if random number has been decremented down to zero
+            } else randomNumber--; // decrement random number
+        }
+        return null;
+    }
 }
