@@ -2,8 +2,11 @@ package library.media;
 
 import library.LibraryFunctions;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.time.LocalDate;
 import java.util.Objects;
+import java.util.Scanner;
 
 public class eTextbook extends Media implements LibraryFunctions {
     private String eTextbookPublisher;
@@ -67,14 +70,63 @@ public class eTextbook extends Media implements LibraryFunctions {
 
     @Override
     public boolean checkIn() {
+        //construct a File object with the name of the input file
+        // then use the File object to construct a Scanner object
+        try {
+            Scanner inFile = new Scanner(new File(library.Utility.getLibraryFileName()));
+            while (inFile.hasNextLine()) {
+                String input = inFile.nextLine();
+                Scanner readWord = new Scanner(input);
+                readWord.useDelimiter(",");
+                while(readWord.hasNext()) {
+                    String value =  readWord.next();
+                    if(input.indexOf(this.title) > 0) {
+                        if (value.equals("in")) {
+                            value.replace("in", "out");
+                            break;
+                        }
+                        else if (value.equals("out")) {
+                            System.out.println("The eTextbook you are looking for is not currently available.");
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+        catch (FileNotFoundException e) {
+            System.out.println("File not found.");
+        }
         return false;
     }
 
     @Override
     public boolean checkOut() {
+        //construct a File object with the name of the input file
+        // then use the File object to construct a Scanner object
+        try {
+            Scanner inFile = new Scanner(new File(library.Utility.getLibraryFileName()));
+            while (inFile.hasNextLine()) {
+                String input = inFile.nextLine();
+                Scanner readWord = new Scanner(input);
+                readWord.useDelimiter(",");
+                while(readWord.hasNext()) {
+                    String value =  readWord.next();
+                    if(input.indexOf(this.title) > 0) {
+                        if (value.equals("out")) {
+                            value.replace("out", "in");
+                            break;
+                        } else {
+                            System.out.println("The eTextbook you are looking for is not currently available.");
+                        }
+                    }
+                }
+            }
+        }
+        catch (FileNotFoundException e) {
+            System.out.println("File not found.");
+        }
         return false;
     }
-
     @Override
     String displayInfo() {
         return null;
