@@ -108,7 +108,7 @@ public class Newspaper extends Media implements LibraryFunctions {
         catch (FileNotFoundException e) {
             System.out.println("File not found.");
         }
-
+        return false;
     }
 
     @Override
