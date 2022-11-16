@@ -11,12 +11,12 @@ public class PublishedPaper extends Media implements LibraryFunctions {
 
     public PublishedPaper(String inputLine) {
         super();
-        String[] values = inputLine.split(",", -1);
+        String[] values = inputLine.split(",");
         this.checkedIn = values[1].equals("in");
         this.title = values[2];
         this.creator = values[3];
-        this.publishedPaperTopic = values[3];
-        this.publishedPaperPublicationDate = LocalDate.parse(values[4]);
+        this.publishedPaperTopic = values[4];
+        this.publishedPaperPublicationDate = LocalDate.parse(values[5]);
     }
 
     public String getPublishedPaperTopic() {
@@ -46,8 +46,9 @@ public class PublishedPaper extends Media implements LibraryFunctions {
         return false;
     }
 
+
     @Override
-    boolean setCreator(String creator) {
-        return false;
+    String displayInfo() {
+        return null;
     }
 }

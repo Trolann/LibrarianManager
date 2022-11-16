@@ -16,12 +16,12 @@ public class Book extends Media implements LibraryFunctions {
 
     public Book(String inputLine) {
         super();
-        String[] values = inputLine.split(",", -1);
+        String[] values = inputLine.split(",");
         this.checkedIn = values[1].equals("in");
         this.title = values[2];
         this.creator = values[3];
-        this.bookPublisher = values[3];
-        this.bookPublicationDate = LocalDate.parse(values[4]);
+        this.bookPublisher = values[4];
+        this.bookPublicationDate = LocalDate.parse(values[5]);
     }
 
     public LocalDate getBookPublicationDate() {
@@ -40,10 +40,7 @@ public class Book extends Media implements LibraryFunctions {
         this.bookPublisher = bookPublisher;
     }
 
-    @Override
-    boolean setCreator(String creator) {
-        return false;
-    }
+
 
     @Override
     public boolean checkIn() {
@@ -55,4 +52,8 @@ public class Book extends Media implements LibraryFunctions {
         return false;
     }
 
+    @Override
+    String displayInfo() {
+        return null;
+    }
 }

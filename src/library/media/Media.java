@@ -26,7 +26,7 @@ public abstract class Media implements Comparable<Media> {
     }
 
     // Abstract methods
-    abstract boolean setCreator(String creator); // Sets private String creator; returns True if properly set
+    abstract String displayInfo();
 
     @Override
     public int compareTo(Media media) {
@@ -45,5 +45,6 @@ public abstract class Media implements Comparable<Media> {
     public void setTitle(String title) {
         this.title = title;
     }
+
 
 }

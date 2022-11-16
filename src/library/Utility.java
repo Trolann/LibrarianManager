@@ -1,15 +1,10 @@
 package library;
 
-import library.media.AudioBook;
-import library.media.Media;
-import library.media.Video;
+import library.media.*;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.Scanner;
+import java.util.*;
 
 public class Utility {
     public static void main(String[] args) {
@@ -65,8 +60,14 @@ public class Utility {
                         AudioBook o = new AudioBook(nextLine);
                         returnList.put(o.getTitle(), o);
                     }
-                    // Add additional Media objects below, update type and Type
-                    // case "type" -> { returnList.add(new Type(nextLine)); }
+                    case "book" -> {
+                        Book o = new Book(nextLine);
+                        returnList.put(o.getTitle(), o);
+                    }
+                    case "publishedPaper" -> {
+                        PublishedPaper o = new PublishedPaper(nextLine);
+                        returnList.put(o.getTitle(), o);
+                    }
                 }
             }
             lineScanner.close();
@@ -75,4 +76,12 @@ public class Utility {
 
         return returnList;
     }
+
+//    public Media getRandom(){
+//        Random r = new Random();
+//        int totalLength = listMedia().size();
+//        int randomNumber = r.nextInt(totalLength);
+//
+//
+//    }
 }
