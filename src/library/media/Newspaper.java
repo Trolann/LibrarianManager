@@ -75,18 +75,22 @@ public class Newspaper extends Media implements LibraryFunctions {
         //construct a File object with the name of the input file
         // then use the File object to construct a Scanner object
         try {
-            Scanner inFile = new Scanner(new File("library.txt"));
+            Scanner inFile = new Scanner(new File(library.Utility.getLibraryFileName()));
             while (inFile.hasNextLine()) {
                 String input = inFile.nextLine();
                 Scanner readWord = new Scanner(input);
                 readWord.useDelimiter(",");
                 while(readWord.hasNext()) {
                     String value =  readWord.next();
-                    if (value.equals("in")) {
-                        return true;
-                    }
-                    else {
-                        checkOut();
+                    if(input.indexOf(this.title) > 0) {
+                        if (value.equals("in")) {
+                            value.replace("in", "out");
+                            break;
+                        }
+                        else if (value.equals("out")) {
+                            System.out.println("The newspaper you are looking for is not currently available.");
+                            break;
+                        }
                     }
                 }
             }
@@ -99,16 +103,23 @@ public class Newspaper extends Media implements LibraryFunctions {
 
     @Override
     public boolean checkOut() {
+        //construct a File object with the name of the input file
+        // then use the File object to construct a Scanner object
         try {
-            Scanner inFile = new Scanner(new File("library.txt"));
+            Scanner inFile = new Scanner(new File(library.Utility.getLibraryFileName()));
             while (inFile.hasNextLine()) {
                 String input = inFile.nextLine();
                 Scanner readWord = new Scanner(input);
                 readWord.useDelimiter(",");
-                while (readWord.hasNext()) {
-                    String value = readWord.next();
-                    if (value.equals("out")) {
-                        return true;
+                while(readWord.hasNext()) {
+                    String value =  readWord.next();
+                    if(input.indexOf(this.title) > 0) {
+                        if (value.equals("out")) {
+                            value.replace("out", "in");
+                            break;
+                        } else {
+                            System.out.println("The newspaper you are looking for is not currently available.");
+                        }
                     }
                 }
             }

@@ -1,15 +1,10 @@
 package library;
 
-import library.media.AudioBook;
-import library.media.Media;
-import library.media.Video;
+import library.media.*;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.Scanner;
+import java.util.*;
 
 public class Utility {
     public static void main(String[] args) {
@@ -65,8 +60,14 @@ public class Utility {
                         AudioBook o = new AudioBook(nextLine);
                         returnList.put(o.getTitle(), o);
                     }
-                    // Add additional Media objects below, update type and Type
-                    // case "type" -> { returnList.add(new Type(nextLine)); }
+                    case "book" -> {
+                        Book o = new Book(nextLine);
+                        returnList.put(o.getTitle(), o);
+                    }
+                    case "publishedPaper" -> {
+                        PublishedPaper o = new PublishedPaper(nextLine);
+                        returnList.put(o.getTitle(), o);
+                    }
                 }
             }
             lineScanner.close();
@@ -74,5 +75,20 @@ public class Utility {
         fileScanner.close();
 
         return returnList;
+    }
+
+    // returns a random Media
+    public Media getRandom() {
+        Map<String, Media> mediaList = listMedia();
+        Random r = new Random(); // get a random number
+        int totalLength = mediaList.size();
+        int randomNumber = r.nextInt(totalLength); // bound random number by total length go hashmap
+
+        for (Map.Entry<String, Media> entry : mediaList.entrySet()) {
+            if (randomNumber == 0) {
+                return entry.getValue(); // return current iteration if random number has been decremented down to zero
+            } else randomNumber--; // decrement random number
+        }
+        return null;
     }
 }
