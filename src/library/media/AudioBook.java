@@ -71,15 +71,6 @@ public class AudioBook extends Media implements LibraryFunctions {
     }
 
     @Override
-    boolean setCreator(String creator) {
-        if (this.bookAuthor.equals("")) {
-            return false; // Unable to set the creator.
-        }
-        this.creator = this.bookAuthor;
-        return true;
-    }
-
-    @Override
     public String toString() {
         return "Audiobook{" +
                 "creator='" + creator + '\'' +
@@ -158,5 +149,10 @@ public class AudioBook extends Media implements LibraryFunctions {
         }
 
         return true;
+    }
+
+    @Override
+    String displayInfo() {
+        return this.title +" written by: " + this.creator;
     }
 }

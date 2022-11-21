@@ -8,6 +8,7 @@ import java.util.*;
 
 public class Utility {
     public static void main(String[] args) {
+        LibraryFrame mainFrame = new LibraryFrame();
         HashMap<String, Media> mediaList = listMedia();
         mediaList.forEach((key, value) -> {
             System.out.println(value.toString());
