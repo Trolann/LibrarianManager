@@ -10,7 +10,7 @@ import java.beans.PropertyChangeListener;
 public class LibraryFrame extends JFrame{
     public LibraryFrame() {
         setContentPane(mainPanel);
-        mainPanel.setSize(681, 170);
+
         setTitle("Library Manager");
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setVisible(true);
