@@ -74,6 +74,7 @@ public class Newspaper extends Media implements LibraryFunctions {
     public boolean checkIn() {
         //construct a File object with the name of the input file
         // then use the File object to construct a Scanner object
+        String value = "";
         try {
             Scanner inFile = new Scanner(new File(library.Utility.getLibraryFileName()));
             while (inFile.hasNextLine()) {
@@ -81,22 +82,31 @@ public class Newspaper extends Media implements LibraryFunctions {
                 Scanner readWord = new Scanner(input);
                 readWord.useDelimiter(",");
                 while(readWord.hasNext()) {
-                    String value =  readWord.next();
+                    value =  readWord.next();
                     if(input.indexOf(this.title) > 0) {
-                        if (value.equals("in")) {
-                            value.replace("in", "out");
+                        if (value.equals("out")) {
+                            value.replace("out", "in");
                             break;
                         }
-                        else if (value.equals("out")) {
+                        else if (value.equals("in")) {
                             System.out.println("The newspaper you are looking for is not currently available.");
                             break;
                         }
                     }
                 }
+                readWord.close();
             }
+            inFile.close();
         }
         catch (FileNotFoundException e) {
             System.out.println("File not found.");
+        }
+        try (PrintWriter fileWriter = new PrintWriter(library.Utility.getLibraryFileName())) {
+            for(int i = 0; i < value.length(); i++) {
+                fileWriter.println(value.charAt(i));
+            }
+        } catch (FileNotFoundException e) {
+            return false;
         }
         return false;
     }
@@ -105,6 +115,7 @@ public class Newspaper extends Media implements LibraryFunctions {
     public boolean checkOut() {
         //construct a File object with the name of the input file
         // then use the File object to construct a Scanner object
+        String value = "";
         try {
             Scanner inFile = new Scanner(new File(library.Utility.getLibraryFileName()));
             while (inFile.hasNextLine()) {
@@ -112,20 +123,30 @@ public class Newspaper extends Media implements LibraryFunctions {
                 Scanner readWord = new Scanner(input);
                 readWord.useDelimiter(",");
                 while(readWord.hasNext()) {
-                    String value =  readWord.next();
+                    value =  readWord.next();
                     if(input.indexOf(this.title) > 0) {
-                        if (value.equals("out")) {
-                            value.replace("out", "in");
+                        if (value.equals("in")) {
+                            value.replace("in", "out");
                             break;
-                        } else {
-                            System.out.println("The newspaper you are looking for is not currently available.");
+                        } else if (value.equals("out")){
+                            System.out.println("You can't check out the newspaper since it's in the library.");
+                            break;
                         }
                     }
                 }
+                readWord.close();
             }
+            inFile.close();
         }
         catch (FileNotFoundException e) {
             System.out.println("File not found.");
+        }
+        try (PrintWriter fileWriter = new PrintWriter(library.Utility.getLibraryFileName())) {
+            for(int i = 0; i < value.length(); i++) {
+                fileWriter.println(value.charAt(i));
+            }
+        } catch (FileNotFoundException e) {
+            return false;
         }
         return false;
     }
