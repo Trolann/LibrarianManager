@@ -53,7 +53,7 @@ public class Book extends Media implements LibraryFunctions {
     }
 
     @Override
-    String displayInfo() {
+    public String displayInfo() {
         return null;
     }
 }

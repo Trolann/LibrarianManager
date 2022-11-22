@@ -48,7 +48,7 @@ public class PublishedPaper extends Media implements LibraryFunctions {
 
 
     @Override
-    String displayInfo() {
+    public String displayInfo() {
         return null;
     }
 }

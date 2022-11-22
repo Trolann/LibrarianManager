@@ -152,7 +152,7 @@ public class AudioBook extends Media implements LibraryFunctions {
     }
 
     @Override
-    String displayInfo() {
+    public String displayInfo() {
         return this.title +" written by: " + this.creator;
     }
 }

@@ -20,6 +20,16 @@ public class Utility {
     // File must start with mediatype for each entry or the entry will be discarded.
     public final static String libraryFileName = "src/library/library.txt";
 
+    // Fake search function just for testing, will be deleted/modified/created by Osman
+    public static LinkedList<Media> searchMedia(String searchString, String searchFilter) {
+        LinkedList<Media> returnList = new LinkedList<Media>();
+        HashMap<String, Media> mediaList = listMedia();
+        mediaList.forEach((key, value) -> {
+            returnList.add(value);
+        });
+        return returnList; // Returns everything
+    }
+
     public static String getLibraryFileName() {
         return libraryFileName;
     }

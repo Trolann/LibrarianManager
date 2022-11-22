@@ -128,7 +128,7 @@ public class eTextbook extends Media implements LibraryFunctions {
         return false;
     }
     @Override
-    String displayInfo() {
+    public String displayInfo() {
         return null;
     }
 }

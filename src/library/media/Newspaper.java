@@ -131,7 +131,7 @@ public class Newspaper extends Media implements LibraryFunctions {
     }
 
     @Override
-    String displayInfo() {
+    public String displayInfo() {
         return null;
     }
 }

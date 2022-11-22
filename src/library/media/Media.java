@@ -26,7 +26,7 @@ public abstract class Media implements Comparable<Media> {
     }
 
     // Abstract methods
-    abstract String displayInfo();
+    abstract public String displayInfo();
 
     @Override
     public int compareTo(Media media) {
