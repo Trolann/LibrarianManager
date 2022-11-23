@@ -40,7 +40,13 @@ public class Book extends Media implements LibraryFunctions {
         this.bookPublisher = bookPublisher;
     }
 
-
+    @Override
+    public String toString() {
+        return "Book{" +
+                "bookPublisher='" + bookPublisher + '\'' +
+                ", bookPublicationDate=" + bookPublicationDate +
+                '}';
+    }
 
     @Override
     public boolean checkIn() {
@@ -54,6 +60,6 @@ public class Book extends Media implements LibraryFunctions {
 
     @Override
     public String displayInfo() {
-        return null;
+        return "null";
     }
 }

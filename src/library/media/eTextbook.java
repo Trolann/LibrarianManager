@@ -150,6 +150,6 @@ public class eTextbook extends Media implements LibraryFunctions {
     }
     @Override
     public String displayInfo() {
-        return null;
+        return "null";
     }
 }

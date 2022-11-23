@@ -19,6 +19,14 @@ public class PublishedPaper extends Media implements LibraryFunctions {
         this.publishedPaperPublicationDate = LocalDate.parse(values[5]);
     }
 
+    @Override
+    public String toString() {
+        return "PublishedPaper{" +
+                "publishedPaperTopic='" + publishedPaperTopic + '\'' +
+                ", publishedPaperPublicationDate=" + publishedPaperPublicationDate +
+                '}';
+    }
+
     public String getPublishedPaperTopic() {
         return publishedPaperTopic;
     }
@@ -49,6 +57,6 @@ public class PublishedPaper extends Media implements LibraryFunctions {
 
     @Override
     public String displayInfo() {
-        return null;
+        return "null";
     }
 }
