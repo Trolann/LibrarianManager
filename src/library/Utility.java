@@ -101,14 +101,13 @@ public class Utility {
         do {
             if(stack.isEmpty()) stack.push(getRandom());
             Media peekedValue = stack.peek();
-            System.out.println("Do you want this book? " + peekedValue);
+            System.out.println("Do you want this media? " + peekedValue);
             System.out.print("Please enter Y/N: ");
-            String input = userInput.next(); // storing in a variable like int input;
+            String input = userInput.next();
             if(input.toUpperCase().equals("Y")) {
-                System.out.println("\nTake this book. " + peekedValue);
+                System.out.println("\nTake the media. " + peekedValue);
                 //search(Media title) ---> title ->store the popped value
                 stack.clear();
-                System.out.println(stack);
                 break;
             }
             else if( !input.toUpperCase().equals("Y") && !input.toUpperCase().equals("N"))
