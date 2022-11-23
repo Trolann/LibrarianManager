@@ -9,6 +9,7 @@ import java.util.*;
 public class Utility {
     public static void main(String[] args) {
         randomMedia();
+        MediaManager mediaManager = new MediaManager();
         LibraryFrame mainGUI = new LibraryFrame();
         mainGUI.setSize(681, 170);
         HashMap<String, Media> mediaList = listMedia();
@@ -36,9 +37,7 @@ public class Utility {
     }
 
     // This function returns a LinkedList of Media objects for display in the GUI
-    public static HashMap<String, Media> listMedia() {
-        HashMap<String, Media> returnList = new HashMap<String, Media>();
-
+    public static void listMedia(String searchFilter, MediaManager mediaManager) {
         File libraryFile = new File(library.Utility.getLibraryFileName());
         Scanner fileScanner = null; // Assigned to quiet down IDE warnings
         String nextLine;
@@ -47,7 +46,7 @@ public class Utility {
             fileScanner = new Scanner(libraryFile);
         } catch (FileNotFoundException e) {
             System.out.println(library.Utility.getLibraryFileName() + " was not found.");
-            return returnList;
+            return;
         }
 
         while(fileScanner.hasNextLine()) {
@@ -67,27 +66,27 @@ public class Utility {
                     // Starts with..  ..add to return ...and auto-cast to Media
                     case "video" -> {
                         Video o = new Video(nextLine);
-                        returnList.put(o.getTitle(), o);
+                        mediaManager.addVideoList(o);
                     }
                     case "audiobook" -> {
                         AudioBook o = new AudioBook(nextLine);
-                        returnList.put(o.getTitle(), o);
+                        mediaManager.addAudioBookList(o);
                     }
                     case "book" -> {
                         Book o = new Book(nextLine);
-                        returnList.put(o.getTitle(), o);
+                        mediaManager.addBookList(o);
                     }
                     case "publishedPaper" -> {
                         PublishedPaper o = new PublishedPaper(nextLine);
-                        returnList.put(o.getTitle(), o);
+                        mediaManager.addPublishedPaperList(o);
                     }
                     case "newspaper" -> {
                         Newspaper o = new Newspaper(nextLine);
-                        returnList.put(o.getTitle(), o);
+                        mediaManager.addNewspaperList(o);
                     }
                     case "eTextbook" -> {
                         eTextbook o = new eTextbook(nextLine);
-                        returnList.put(o.getTitle(), o);
+                        mediaManager.addeTextBookList(o);
                     }
                 }
             }
@@ -95,7 +94,6 @@ public class Utility {
         }
         fileScanner.close();
 
-        return returnList;
     }
 
     // returns a random media
