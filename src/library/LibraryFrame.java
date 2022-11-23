@@ -1,7 +1,5 @@
 package library;
 
-import jdk.jshell.execution.Util;
-
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -120,23 +118,35 @@ public class LibraryFrame extends JFrame{
     public void updateLibraryUI(String searchFilter) {
         // Clear old values in drop-down (N/A check-in/out)
         searchResultsComboBox.removeAllItems();
+        String _searchString = searchString.getText();
 
         // Add new values into drop-down
         ArrayList<LibraryFunctions> displayList = new ArrayList<>();
         Utility.listMedia().forEach((key, value) -> {
-            if(value.toString().contains(searchFilter))
-                displayList.add(value);
+            if(value.toString().contains(searchFilter)) {
+                if (_searchString.length() > 0 && value.displayInfo().toLowerCase().contains(_searchString.toLowerCase())) {
+                    System.out.println(value.displayInfo().toLowerCase());
+                }
+                // If there's a search string, see if it's value matches (short-circuits)
+                if (_searchString.length() > 0 && value.displayInfo().toLowerCase().contains(_searchString.toLowerCase())) {
+                    displayList.add(value);
+                }
+                if (_searchString.length() == 0) {
+                    // If we're here it's because there's no title search, displayList should have all objects
+                    displayList.add(value);
+                }
+
+            }
         });
 
         for (LibraryFunctions mediaObject : displayList) {
             searchResultsComboBox.addItem(mediaObject.displayInfo());
         }
 
-        // Update check-in/out label for first value
     }
 
     private JTextField searchString;
-    private JComboBox searchResultsComboBox;
+    private JComboBox<String> searchResultsComboBox;
     private JButton checkInButton;
     private JButton checkOutButton;
     private JButton searchButton;

@@ -39,7 +39,7 @@ public class Video extends Media implements LibraryFunctions {
 
     @Override
     public String displayInfo() {
-        return this.getTitle() + "Directed by: " + this.getVideoDirector();
+        return this.getTitle() + " Directed by: " + this.getVideoDirector();
     }
 
     public String getVideoDirector() {

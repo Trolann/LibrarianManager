@@ -12,7 +12,7 @@ public class Utility {
         //randomMedia();
 
         LibraryFrame mainGUI = new LibraryFrame();
-        mainGUI.setSize(900, 170);
+        mainGUI.setSize(1400, 170);
     }
 
     // Filename (relative location) of the file with library information.
