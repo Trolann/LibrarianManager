@@ -7,6 +7,18 @@ import java.time.LocalDate;
 public class PublishedPaper extends Media implements LibraryFunctions {
 
     private String publishedPaperTopic;
+
+    @Override
+    public String toString() {
+        return "PublishedPaper{" +
+                "publishedPaperTopic='" + publishedPaperTopic + '\'' +
+                ", publishedPaperPublicationDate=" + publishedPaperPublicationDate +
+                ", creator='" + creator + '\'' +
+                ", title='" + title + '\'' +
+                ", checkedIn=" + checkedIn +
+                '}';
+    }
+
     private LocalDate publishedPaperPublicationDate;
 
     public PublishedPaper(String inputLine) {
@@ -49,6 +61,6 @@ public class PublishedPaper extends Media implements LibraryFunctions {
 
     @Override
     public String displayInfo() {
-        return null;
+        return "nullpaper";
     }
 }

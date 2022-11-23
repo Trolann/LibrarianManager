@@ -4,7 +4,7 @@ video,in,Dune,Denis Villeneuve,Timothée Chalamet,155,8
 video,in,Army of Thieves,Matthias Schweighöfer,Matthias Schweighöfer,127,6.9
 video,in,Free Guy,Shawn Levy,Ryan Reynolds,115,7.8
 video,in,Gunpowder Milkshake,Navot Papushado,Karen Gillan,114,6.5
-video,out,Venom,Ruben Fleischer,Tom Hardy,112,6.8
+video,in,Venom,Ruben Fleischer,Tom Hardy,112,6.8
 video,in,Halloween Kills,David Gordon Green,Jamie Lee Curtis,105,7
 video,in,American Badger,Kirk Caouette,Andrea Stefancikova,88,6.3
 video,out,The Addams Family 2,Greg Tiernan,Oscar Isaac,93,7.4

@@ -24,6 +24,7 @@ public abstract class Media implements Comparable<Media> {
     public boolean isCheckedIn() {
         return checkedIn;
     }
+    public void checkInOut() { this.checkedIn = !this.checkedIn; }
 
     // Abstract methods
     abstract public String displayInfo();

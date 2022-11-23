@@ -10,6 +10,16 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Book extends Media implements LibraryFunctions {
+    @Override
+    public String toString() {
+        return "Book{" +
+                "bookPublisher='" + bookPublisher + '\'' +
+                ", bookPublicationDate=" + bookPublicationDate +
+                ", creator='" + creator + '\'' +
+                ", title='" + title + '\'' +
+                ", checkedIn=" + checkedIn +
+                '}';
+    }
 
     private String bookPublisher;
     private LocalDate bookPublicationDate;
@@ -54,6 +64,6 @@ public class Book extends Media implements LibraryFunctions {
 
     @Override
     public String displayInfo() {
-        return null;
+        return "nullBook";
     }
 }

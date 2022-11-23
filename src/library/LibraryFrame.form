@@ -54,7 +54,7 @@
       </component>
       <component id="18b21" class="javax.swing.JComboBox" binding="searchResultsComboBox" default-binding="true">
         <constraints>
-          <grid row="3" column="2" row-span="2" col-span="3" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
+          <grid row="3" column="2" row-span="2" col-span="3" vsize-policy="0" hsize-policy="0" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
           <maximumRowCount value="4"/>
@@ -159,14 +159,6 @@
         </constraints>
         <properties>
           <text value="Check-out"/>
-        </properties>
-      </component>
-      <component id="6b4ff" class="javax.swing.JLabel" binding="testLabel">
-        <constraints>
-          <grid row="1" column="6" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties>
-          <text value="Label"/>
         </properties>
       </component>
     </children>

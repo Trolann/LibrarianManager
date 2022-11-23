@@ -18,7 +18,8 @@ public class Video extends Media implements LibraryFunctions {
     // This Constructor takes in an entire line from the library file and parses it
     public Video(String inputLine) {
         super(); // Must be first
-        String[] values = inputLine.split(",", -1); // Split into known value locations
+
+        String[] values = inputLine.split("\\s*,\\s*", -1); // Split into known value locations
         this.checkedIn = values[1].equals("in");
         this.title = values[2];
         this.creator = values[3];
@@ -112,7 +113,7 @@ public class Video extends Media implements LibraryFunctions {
     private boolean _checkInOut(boolean checkInMedia) {
         File libraryFile = new File(library.Utility.getLibraryFileName());
         Scanner fileScanner = null; // Assigned to quiet down IDE warnings
-        String nextLine;
+
         ArrayList<String> fileLines = new ArrayList<String>();
         String newAvailabilityValue = checkInMedia ? "in" : "out";
         String oldAvailabilityValue = checkInMedia ? "out" : "in";
@@ -125,22 +126,15 @@ public class Video extends Media implements LibraryFunctions {
         }
 
         while(fileScanner.hasNextLine()) {
-            Scanner lineScanner = new Scanner(fileScanner.nextLine());
+            String line = fileScanner.nextLine();
 
-            while (lineScanner.hasNext()) {
-                // Get the next value, store in string to be safe
-                nextLine = lineScanner.next();
-
-                if(nextLine.indexOf(this.title) > 0) {
-                    nextLine = nextLine.replace(oldAvailabilityValue, newAvailabilityValue);
-                }
-
-                fileLines.add(nextLine);
+            if(line.indexOf(this.title) > 0) {
+                line = line.replace(oldAvailabilityValue, newAvailabilityValue);
+                this.checkInOut();
             }
-            lineScanner.close();
-        }
+                fileLines.add(line);
+            }
         fileScanner.close();
-
 
         // Writes all contents back to the file. Automatically closes
         try (PrintWriter fileWriter = new PrintWriter(libraryFile)) {

@@ -20,7 +20,7 @@ public class eTextbook extends Media implements LibraryFunctions {
         this.checkedIn = values[1].equals("in");
         this.title = values[2];
         this.creator = values[3];
-        this.eTextbookISBN = Integer.parseInt(values[4]);
+        //this.eTextbookISBN = Integer.parseInt(values[4]); // Erroring out, commented out for testing
         this.eTextbookPublisher = values[5];
         this.eTextbookReleasedDate = LocalDate.parse(values[6]);
     }
@@ -150,6 +150,6 @@ public class eTextbook extends Media implements LibraryFunctions {
     }
     @Override
     public String displayInfo() {
-        return null;
+        return "nulletext";
     }
 }
