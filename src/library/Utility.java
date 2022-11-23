@@ -8,37 +8,23 @@ import java.util.*;
 
 public class Utility {
     public static void main(String[] args) {
-        randomMedia();
+        //randomMedia();
         LibraryFrame mainGUI = new LibraryFrame();
         mainGUI.setSize(681, 170);
-        HashMap<String, Media> mediaList = listMedia();
-        mediaList.forEach((key, value) -> {
-            System.out.println(value.toString());
-            });
+
     }
 
     // Filename (relative location) of the file with library information.
     // File must start with mediatype for each entry or the entry will be discarded.
     public final static String libraryFileName = "src/library/library.txt";
 
-    // Fake search function just for testing, will be deleted/modified/created by Osman
-    public static LinkedList<Media> searchMedia(String searchString, String searchFilter) {
-        LinkedList<Media> returnList = new LinkedList<Media>();
-        HashMap<String, Media> mediaList = listMedia();
-        mediaList.forEach((key, value) -> {
-            returnList.add(value);
-        });
-        return returnList; // Returns everything
-    }
-
     public static String getLibraryFileName() {
         return libraryFileName;
     }
 
     // This function returns a LinkedList of Media objects for display in the GUI
-    public static HashMap<String, Media> listMedia() {
-        HashMap<String, Media> returnList = new HashMap<String, Media>();
-
+    public static HashMap<String, LibraryFunctions> listMedia() {
+        HashMap<String, LibraryFunctions> returnMap = new HashMap<>();
         File libraryFile = new File(library.Utility.getLibraryFileName());
         Scanner fileScanner = null; // Assigned to quiet down IDE warnings
         String nextLine;
@@ -47,7 +33,7 @@ public class Utility {
             fileScanner = new Scanner(libraryFile);
         } catch (FileNotFoundException e) {
             System.out.println(library.Utility.getLibraryFileName() + " was not found.");
-            return returnList;
+            return returnMap;
         }
 
         while(fileScanner.hasNextLine()) {
@@ -67,27 +53,27 @@ public class Utility {
                     // Starts with..  ..add to return ...and auto-cast to Media
                     case "video" -> {
                         Video o = new Video(nextLine);
-                        returnList.put(o.getTitle(), o);
+                        returnMap.put(o.getTitle(), o);
                     }
                     case "audiobook" -> {
                         AudioBook o = new AudioBook(nextLine);
-                        returnList.put(o.getTitle(), o);
+                        returnMap.put(o.getTitle(), o);
                     }
                     case "book" -> {
                         Book o = new Book(nextLine);
-                        returnList.put(o.getTitle(), o);
+                        returnMap.put(o.getTitle(), o);
                     }
                     case "publishedPaper" -> {
                         PublishedPaper o = new PublishedPaper(nextLine);
-                        returnList.put(o.getTitle(), o);
+                        returnMap.put(o.getTitle(), o);
                     }
                     case "newspaper" -> {
                         Newspaper o = new Newspaper(nextLine);
-                        returnList.put(o.getTitle(), o);
+                        returnMap.put(o.getTitle(), o);
                     }
                     case "eTextbook" -> {
                         eTextbook o = new eTextbook(nextLine);
-                        returnList.put(o.getTitle(), o);
+                        returnMap.put(o.getTitle(), o);
                     }
                 }
             }
@@ -95,12 +81,12 @@ public class Utility {
         }
         fileScanner.close();
 
-        return returnList;
+        return returnMap;
     }
 
     // returns a random media
     public static String randomMedia() {
-        Stack<Media> stack = new Stack<>();
+        Stack<LibraryFunctions> stack = new Stack<>();
         int size = 10;
         while(stack.size() < size) {
             stack.push(getRandom());
@@ -108,7 +94,7 @@ public class Utility {
         Scanner userInput = new Scanner(System.in);
         do {
             if(stack.isEmpty()) stack.push(getRandom());
-            Media peekedValue = stack.peek();
+            LibraryFunctions peekedValue = stack.peek();
             System.out.println("Do you want this media? " + peekedValue);
             System.out.print("Please enter Y/N: ");
             String input = userInput.next();
@@ -129,13 +115,13 @@ public class Utility {
     }
 
     // returns a random Media
-    public static Media getRandom() {
-        Map<String, Media> mediaList = listMedia();
+    public static LibraryFunctions getRandom() {
+        Map<String, LibraryFunctions> mediaList = listMedia();
         Random r = new Random(); // get a random number
         int totalLength = mediaList.size();
         int randomNumber = r.nextInt(totalLength); // bound random number by total length go hashmap
 
-        for (Map.Entry<String, Media> entry : mediaList.entrySet()) {
+        for (Map.Entry<String, LibraryFunctions> entry : mediaList.entrySet()) {
             if (randomNumber == 0) {
                 return entry.getValue(); // return current iteration if random number has been decremented down to zero
             } else randomNumber--; // decrement random number

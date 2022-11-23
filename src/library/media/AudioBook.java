@@ -70,6 +70,7 @@ public class AudioBook extends Media implements LibraryFunctions {
         this.listeningTime = listeningTime;
     }
 
+
     @Override
     public String toString() {
         return "Audiobook{" +
@@ -107,40 +108,33 @@ public class AudioBook extends Media implements LibraryFunctions {
     // Single function to open a file and rewrite to it. Boolean determines the value
     // for this particular Video file
     private boolean _checkInOut(boolean checkInMedia) {
-        File libraryFile = new File(Utility.getLibraryFileName());
+        File theFile = new File(library.Utility.getLibraryFileName());
         Scanner fileScanner = null; // Assigned to quiet down IDE warnings
-        String nextLine;
+
         ArrayList<String> fileLines = new ArrayList<String>();
         String newAvailabilityValue = checkInMedia ? "in" : "out";
         String oldAvailabilityValue = checkInMedia ? "out" : "in";
 
         try {
-            fileScanner = new Scanner(libraryFile);
+            fileScanner = new Scanner(theFile);
         } catch (FileNotFoundException e) {
-            System.out.println(Utility.getLibraryFileName() + " was not found.");
+            System.out.println(library.Utility.getLibraryFileName() + " was not found.");
             return false;
         }
 
         while(fileScanner.hasNextLine()) {
-            Scanner lineScanner = new Scanner(fileScanner.nextLine());
+            String line = fileScanner.nextLine();
 
-            while (lineScanner.hasNext()) {
-                // Get the next value, store in string to be safe
-                nextLine = lineScanner.next();
-
-                if(nextLine.indexOf(this.title) > 0) {
-                    nextLine = nextLine.replace(oldAvailabilityValue, newAvailabilityValue);
-                }
-
-                fileLines.add(nextLine);
+            if(line.indexOf(this.title) > 0) {
+                line = line.replace(oldAvailabilityValue, newAvailabilityValue);
+                this.checkInOut();
             }
-            lineScanner.close();
+            fileLines.add(line);
         }
         fileScanner.close();
 
-
         // Writes all contents back to the file. Automatically closes
-        try (PrintWriter fileWriter = new PrintWriter(libraryFile)) {
+        try (PrintWriter fileWriter = new PrintWriter(theFile)) {
             for(String line : fileLines) {
                 fileWriter.println(line);
             }

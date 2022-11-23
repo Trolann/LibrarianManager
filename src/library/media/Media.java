@@ -7,6 +7,8 @@ public abstract class Media implements Comparable<Media> {
     protected String title;
     protected boolean checkedIn;
 
+    public void checkInOut() {this.checkedIn = !this.checkedIn; }
+
     // Constructor - Media must be made with the Title and publishedDate in order to facilitate comparing
     // This constructor is called by each subclass's constructor, so setting creator and title is not needed.
     public Media(String mediaTitle, String creator, boolean checkedIn) {
