@@ -8,6 +8,7 @@ import java.util.*;
 
 public class Utility {
     public static void main(String[] args) {
+        randomMedia();
         LibraryFrame mainGUI = new LibraryFrame();
         mainGUI.setSize(681, 170);
         HashMap<String, Media> mediaList = listMedia();
@@ -89,8 +90,39 @@ public class Utility {
         return returnList;
     }
 
+    // returns a random media
+    public static String randomMedia() {
+        Stack<Media> stack = new Stack<>();
+        int size = 10;
+        while(stack.size() < size) {
+            stack.push(getRandom());
+        }
+        Scanner userInput = new Scanner(System.in);
+        do {
+            if(stack.isEmpty()) stack.push(getRandom());
+            Media peekedValue = stack.peek();
+            System.out.println("Do you want this book? " + peekedValue);
+            System.out.print("Please enter Y/N: ");
+            String input = userInput.next(); // storing in a variable like int input;
+            if(input.toUpperCase().equals("Y")) {
+                System.out.println("\nTake this book. " + peekedValue);
+                //search(Media title) ---> title ->store the popped value
+                stack.clear();
+                System.out.println(stack);
+                break;
+            }
+            else if( !input.toUpperCase().equals("Y") && !input.toUpperCase().equals("N"))
+                System.out.println("Please enter a valid Value");
+            else {
+                if(!stack.isEmpty()) stack.pop();
+            }
+            System.out.println();
+        } while(true);
+        return null; // needs to return title after calling the search method
+    }
+
     // returns a random Media
-    public Media getRandom() {
+    public static Media getRandom() {
         Map<String, Media> mediaList = listMedia();
         Random r = new Random(); // get a random number
         int totalLength = mediaList.size();
@@ -104,3 +136,4 @@ public class Utility {
         return null;
     }
 }
+
