@@ -153,6 +153,6 @@ public class Newspaper extends Media implements LibraryFunctions {
 
     @Override
     public String displayInfo() {
-        return this.title +" written by: " + this.creator;
+        return null;
     }
 }
