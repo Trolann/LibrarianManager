@@ -124,9 +124,6 @@ public class LibraryFrame extends JFrame{
         ArrayList<LibraryFunctions> displayList = new ArrayList<>();
         Utility.listMedia().forEach((key, value) -> {
             if(value.toString().contains(searchFilter)) {
-                if (_searchString.length() > 0 && value.displayInfo().toLowerCase().contains(_searchString.toLowerCase())) {
-                    System.out.println(value.displayInfo().toLowerCase());
-                }
                 // If there's a search string, see if it's value matches (short-circuits)
                 if (_searchString.length() > 0 && value.displayInfo().toLowerCase().contains(_searchString.toLowerCase())) {
                     displayList.add(value);
@@ -160,5 +157,6 @@ public class LibraryFrame extends JFrame{
     private JRadioButton publishedPaperRadioButton;
     private JRadioButton videoRadioButton;
     private JLabel availabilityLabel;
+    private JButton randomMediaButton;
 
 }
