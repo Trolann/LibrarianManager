@@ -81,6 +81,14 @@ public class Utility {
                         PublishedPaper o = new PublishedPaper(nextLine);
                         returnList.put(o.getTitle(), o);
                     }
+                    case "newspaper" -> {
+                        Newspaper o = new Newspaper(nextLine);
+                        returnList.put(o.getTitle(), o);
+                    }
+                    case "eTextbook" -> {
+                        eTextbook o = new eTextbook(nextLine);
+                        returnList.put(o.getTitle(), o);
+                    }
                 }
             }
             lineScanner.close();
