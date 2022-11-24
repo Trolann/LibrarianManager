@@ -2,16 +2,12 @@ package library.media;
 
 import library.LibraryFunctions;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.PrintWriter;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Scanner;
+import java.util.Objects;
 
 public class Book extends Media implements LibraryFunctions {
 
-    private String bookPublisher;
+    private String bookPublisher, bookISBN;
     private LocalDate bookPublicationDate;
 
     public Book(String inputLine) {
@@ -20,8 +16,9 @@ public class Book extends Media implements LibraryFunctions {
         this.checkedIn = values[1].equals("in");
         this.title = values[2];
         this.creator = values[3];
-        this.bookPublisher = values[4];
-        this.bookPublicationDate = LocalDate.parse(values[5]);
+        this.bookISBN = values[4];
+        this.bookPublisher = values[5];
+        this.bookPublicationDate = LocalDate.parse(values[6]);
     }
 
     public LocalDate getBookPublicationDate() {
@@ -49,6 +46,11 @@ public class Book extends Media implements LibraryFunctions {
     }
 
     @Override
+    public int hashCode() {
+        return Objects.hash(this.title);
+    }
+
+    @Override
     public boolean checkIn() {
         return false;
     }
@@ -60,6 +62,14 @@ public class Book extends Media implements LibraryFunctions {
 
     @Override
     public String displayInfo() {
-        return "null";
+        return this.title +" by " + this.creator;
+    }
+
+    public String getBookISBN() {
+        return bookISBN;
+    }
+
+    public void setBookISBN(String bookISBN) {
+        this.bookISBN = bookISBN;
     }
 }
