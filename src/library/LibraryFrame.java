@@ -27,36 +27,47 @@ public class LibraryFrame extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 searchFilter = "Book";
+                updateLibraryUI(searchFilter);
             }
         });
         audiobookRadioButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 searchFilter = "Audiobook";
+                updateLibraryUI(searchFilter);
+
             }
         });
         eTextbookRadioButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 searchFilter = "eTextbook";
+                updateLibraryUI(searchFilter);
+
             }
         });
         newspaperRadioButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 searchFilter = "Newspaper";
+                updateLibraryUI(searchFilter);
+
             }
         });
         publishedPaperRadioButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 searchFilter = "PublishedPaper";
+                updateLibraryUI(searchFilter);
+
             }
         });
         videoRadioButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 searchFilter = "Video";
+                updateLibraryUI(searchFilter);
+
             }
         });
         searchResultsComboBox.addActionListener(new ActionListener() {

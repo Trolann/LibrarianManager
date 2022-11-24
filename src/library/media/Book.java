@@ -21,6 +21,14 @@ public class Book extends Media implements LibraryFunctions {
         this.bookPublicationDate = LocalDate.parse(values[6]);
     }
 
+    @Override
+    public String toString() {
+        return "Book{" +
+                "creator='" + creator + '\'' +
+                ", title='" + title + '\'' +
+                ", checkedIn=" + checkedIn +
+                '}';
+    }
     public LocalDate getBookPublicationDate() {
         return bookPublicationDate;
     }
@@ -37,12 +45,12 @@ public class Book extends Media implements LibraryFunctions {
         this.bookPublisher = bookPublisher;
     }
 
-    @Override
-    public String toString() {
-        return "Book{" +
-                "bookPublisher='" + bookPublisher + '\'' +
-                ", bookPublicationDate=" + bookPublicationDate +
-                '}';
+    public String getBookISBN() {
+        return bookISBN;
+    }
+
+    public void setBookISBN(String bookISBN) {
+        this.bookISBN = bookISBN;
     }
 
     @Override
@@ -63,13 +71,5 @@ public class Book extends Media implements LibraryFunctions {
     @Override
     public String displayInfo() {
         return this.title +" by " + this.creator;
-    }
-
-    public String getBookISBN() {
-        return bookISBN;
-    }
-
-    public void setBookISBN(String bookISBN) {
-        this.bookISBN = bookISBN;
     }
 }

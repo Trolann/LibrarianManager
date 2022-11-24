@@ -18,14 +18,15 @@ public class PublishedPaper extends Media implements LibraryFunctions {
         this.creator = values[3];
         this.publishedPaperISSN = values[4];
         this.publishedPaperTopic = values[5];
-        this.publishedPaperPublicationDate = LocalDate.parse(values[5]);
+        this.publishedPaperPublicationDate = LocalDate.parse(values[6]);
     }
 
     @Override
     public String toString() {
         return "PublishedPaper{" +
-                "publishedPaperTopic='" + publishedPaperTopic + '\'' +
-                ", publishedPaperPublicationDate=" + publishedPaperPublicationDate +
+                "creator='" + creator + '\'' +
+                ", title='" + title + '\'' +
+                ", checkedIn=" + checkedIn +
                 '}';
     }
 
@@ -43,6 +44,14 @@ public class PublishedPaper extends Media implements LibraryFunctions {
 
     public void setPublishedPaperPublicationDate(LocalDate publishedPaperPublicationDate) {
         this.publishedPaperPublicationDate = publishedPaperPublicationDate;
+    }
+
+    public String getPublishedPaperISSN() {
+        return publishedPaperISSN;
+    }
+
+    public void setPublishedPaperISSN(String publishedPaperISSN) {
+        this.publishedPaperISSN = publishedPaperISSN;
     }
 
     @Override
@@ -66,11 +75,4 @@ public class PublishedPaper extends Media implements LibraryFunctions {
         return this.title +" by " + this.creator;
     }
 
-    public String getPublishedPaperISSN() {
-        return publishedPaperISSN;
-    }
-
-    public void setPublishedPaperISSN(String publishedPaperISSN) {
-        this.publishedPaperISSN = publishedPaperISSN;
-    }
 }
