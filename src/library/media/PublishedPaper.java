@@ -3,10 +3,11 @@ package library.media;
 import library.LibraryFunctions;
 
 import java.time.LocalDate;
+import java.util.Objects;
 
 public class PublishedPaper extends Media implements LibraryFunctions {
 
-    private String publishedPaperTopic;
+    private String publishedPaperTopic, publishedPaperISSN;
     private LocalDate publishedPaperPublicationDate;
 
     public PublishedPaper(String inputLine) {
@@ -15,7 +16,8 @@ public class PublishedPaper extends Media implements LibraryFunctions {
         this.checkedIn = values[1].equals("in");
         this.title = values[2];
         this.creator = values[3];
-        this.publishedPaperTopic = values[4];
+        this.publishedPaperISSN = values[4];
+        this.publishedPaperTopic = values[5];
         this.publishedPaperPublicationDate = LocalDate.parse(values[5]);
     }
 
@@ -43,6 +45,10 @@ public class PublishedPaper extends Media implements LibraryFunctions {
         this.publishedPaperPublicationDate = publishedPaperPublicationDate;
     }
 
+    @Override
+    public int hashCode() {
+        return Objects.hash(this.title);
+    }
 
     @Override
     public boolean checkIn() {
@@ -57,6 +63,14 @@ public class PublishedPaper extends Media implements LibraryFunctions {
 
     @Override
     public String displayInfo() {
-        return "null";
+        return this.title +" by " + this.creator;
+    }
+
+    public String getPublishedPaperISSN() {
+        return publishedPaperISSN;
+    }
+
+    public void setPublishedPaperISSN(String publishedPaperISSN) {
+        this.publishedPaperISSN = publishedPaperISSN;
     }
 }

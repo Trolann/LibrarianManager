@@ -57,3 +57,33 @@ eTextbook,in,After the Death of God,Gianni Vattimo,1282872125,Columbia Universit
 eTextbook,out,Smartphone video storytelling,Robb Montgomery,1351796550,Routledge,2018-04-25
 eTextbook,in,Humanity a moral history of the twentieth century,Jonathan Glover,1283596857,Yale University Press,2012-05-12
 eTextbook,out,Feminism is for everybody : passionate politics,Bell Hooks,1317588363,Routledge,2014-01-19
+book,in,Fairy Tale,Stephen King,382749157,Scribner,2022-09-06
+book,out,Stolen Focus: Why You Can't Pay Attention--and How to Think Deeply Again,Johann Hari,438117351,Crown,2022-01-25
+book,in,Eleanor Oliphant Is Completely Fine,Gail Honeyman,735220689,Pamela Dorman,2017-05-09
+book,in,Sea of Tranquility: A novel,Emily St. John ,367281794,Knopf,2022-04-05
+book,in,Take My Hand,Dolen Perkins,873562878,Berkley,2022-04-12
+book,in,Red Mountain: A Novel,Boo Walker,991301870,Knopf,2016-10-15
+book,out,The Silent Wife,Kerry Fisher ,376784446,Hussey,2017-05-02
+book,in,Demon Copperhead: A Novel,Barbara Kingsolver,783567253,Harper,2022-10-18
+book,in,The Light We Carry: Overcoming in Uncertain Times,Michelle Obama,367948764,Crown,2022-11-15
+book,out,The Midnight Library: A Novel,Matt Haig ,456792457,Penguin Audio ,2020-09-29
+book,in,The One For Me,Rachel Hanna ,467839256,Scribner,2013-03-22
+book,out,City on Fire: A Novel,Don Winslow,367499256,William Morrow,2022-04-26
+book,in,The Maid: A Novel,Nita Prose,347012537,Ballantine Books,2022-01-04
+book,out,Lessons in Chemistry,Bonnie Garmus ,781935268,Doubleday,2022-04-05
+book,in,The Beach House,Rachel Hanna ,1696781868,Hussey,2019-08-13
+publishedPaper,in,Artificial Intelligence in Education: A Review,Lijia Chen,2169-3536,IEEE Access,2020-04-17
+publishedPaper,in,Deep Residual Learning for Image Recognition,Kaiming He,1063-6919,CVPR,2016-06-30
+publishedPaper,in,A Comprehensive Survey on Graph Neural Networks,Zonghan Wu,8893-8914,Neural Networks ,2022-04-26
+publishedPaper,in,Architecture and Mental Health,Meriam Mohammed,9110-5758,BizzConnect,2022-08-29
+publishedPaper,out,Fusing Blockchain and AI With Metaverse: A Survey,Qinglin Yang,4273-8374,Computer Society ,2022-07-23
+publishedPaper,in,Understanding of a convolutional neural network,Saad Albawi,4270-8902,ICET,2017-06-12
+publishedPaper,in,Image quality assessment: from error visibility to structural similarity,Zhou Wang,3280-3379,IEEE Access,2019-04-21
+publishedPaper,out,An Overview on Edge Computing Research,Keyan Cao,1292-8749,IEEE Access,2022-04-04
+publishedPaper,in,Taking the Human Out of the Loop: A Review of Bayesian Optimization,Bobak Shahriari,4279-9478,Proceedings of the IEEE,2015-12-10
+publishedPaper,in,A fast and elitist multiobjective genetic algorithm: NSGA-II,K. Deb,3229-7819,Transactions on Evolutionary Computation,2018-05-19
+publishedPaper,out,A Comprehensive Survey on Transfer Learning,Fuzhen Zhuang,4482-3923,Proceedings of the IEEE,2022-05-21
+publishedPaper,in,A Comprehensive Review on Malware Detection Approaches,Ömer Aslan Aslan,3327-9563,IEEE Access,2021-07-29
+publishedPaper,in,Event-Based Vision: A Survey,Guillermo Gallego,9821-0456,IEEE Transactions on Pattern Analysis ,2017-07-08
+publishedPaper,out,Edge Computing: Vision and Challenges,Weisong Shi,1402-4892,Internet of Things Journal,2020-02-05
+publishedPaper,in,A Tutorial on 5G NR V2X Communications,Mate Boban,2786-6219,IEEE Communications Surveys & Tutorials,2013-07-25
