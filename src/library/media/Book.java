@@ -2,8 +2,14 @@ package library.media;
 
 import library.LibraryFunctions;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 import java.time.LocalDate;
+import java.util.LinkedList;
 import java.util.Objects;
+import java.util.Queue;
+import java.util.Scanner;
 
 public class Book extends Media implements LibraryFunctions {
 
@@ -59,13 +65,38 @@ public class Book extends Media implements LibraryFunctions {
     }
 
     @Override
-    public boolean checkIn() {
-        return false;
-    }
+    public boolean checkIn() { return handler(false); }
 
     @Override
-    public boolean checkOut() {
-        return false;
+    public boolean checkOut() { return handler(true); }
+
+    private boolean handler(boolean availability) {
+        Queue<String> fileLines = new LinkedList<>();
+
+        try(Scanner inputFile = new Scanner(new File(library.Utility.getLibraryFileName()))) {
+            while (inputFile.hasNextLine()) {
+                String line = inputFile.nextLine();
+
+                if (line.indexOf(this.title) > 0) {
+                    line = line.replaceFirst(availability ? "in" : "out", !availability ? "in" : "out");
+                    this.checkInOut();
+                }
+                fileLines.add(line);
+            }
+
+        } catch (FileNotFoundException e) {
+            System.out.println(library.Utility.getLibraryFileName() + " was not in the specified directory.");
+            return false;
+        }
+        try(PrintWriter outputFile = new PrintWriter(library.Utility.getLibraryFileName())){
+            while(!fileLines.isEmpty()) {
+                outputFile.println(fileLines.poll());
+            }
+        } catch (FileNotFoundException e) {
+            System.out.println(library.Utility.getLibraryFileName() + " was not in the specified directory.");
+            return false;
+        }
+        return true;
     }
 
     @Override
