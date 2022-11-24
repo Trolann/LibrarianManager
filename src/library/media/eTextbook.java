@@ -6,13 +6,14 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Scanner;
 
 public class eTextbook extends Media implements LibraryFunctions {
     private String eTextbookPublisher;
     private LocalDate eTextbookReleasedDate;
-    private int eTextbookISBN;
+    private String eTextbookISBN;
 
     public eTextbook(String inputLine) {
         super();
@@ -20,7 +21,7 @@ public class eTextbook extends Media implements LibraryFunctions {
         this.checkedIn = values[1].equals("in");
         this.title = values[2];
         this.creator = values[3];
-        //this.eTextbookISBN = Integer.parseInt(values[4]);
+        this.eTextbookISBN = values[4];
         this.eTextbookPublisher = values[5];
         this.eTextbookReleasedDate = LocalDate.parse(values[6]);
     }
@@ -39,10 +40,10 @@ public class eTextbook extends Media implements LibraryFunctions {
         return eTextbookReleasedDate;
     }
 
-    public void seteTextbookISBN(int eTextbookISBN) {
+    public void seteTextbookISBN(String eTextbookISBN) {
         this.eTextbookISBN = eTextbookISBN;
     }
-    public int geteTextbookISBN() {
+    public String geteTextbookISBN() {
         return eTextbookISBN;
     }
 
@@ -53,6 +54,11 @@ public class eTextbook extends Media implements LibraryFunctions {
                 ", eTextbookReleasedDate=" + eTextbookReleasedDate +
                 ", eTextbookISBN=" + eTextbookISBN +
                 '}';
+    }
+
+    @Override
+    public String displayInfo() {
+        return this.title + " written by " + this.creator;
     }
 
     @Override
@@ -73,27 +79,16 @@ public class eTextbook extends Media implements LibraryFunctions {
     public boolean checkIn() {
         //construct a File object with the name of the input file
         // then use the File object to construct a Scanner object
-        String value = "";
+        ArrayList<String> input = new ArrayList<>();
         try {
             Scanner inFile = new Scanner(new File(library.Utility.getLibraryFileName()));
             while (inFile.hasNextLine()) {
-                String input = inFile.nextLine();
-                Scanner readWord = new Scanner(input);
-                readWord.useDelimiter(",");
-                while(readWord.hasNext()) {
-                    value =  readWord.next();
-                    if(input.indexOf(this.title) > 0) {
-                        if (value.equals("out")) {
-                            value.replace("out", "in");
-                            break;
-                        }
-                        else if (value.equals("in")) {
-                            System.out.println("The eTextbook you are looking for is not currently available.");
-                            break;
-                        }
-                    }
+                String readLine = inFile.nextLine();
+                if(readLine.indexOf(this.title) > 0) {
+                    readLine = readLine.replaceFirst("out", "in");
+                    this.checkInOut();
                 }
-                readWord.close();
+                input.add(readLine);
             }
             inFile.close();
         }
@@ -101,8 +96,8 @@ public class eTextbook extends Media implements LibraryFunctions {
             System.out.println("File not found.");
         }
         try (PrintWriter fileWriter = new PrintWriter(library.Utility.getLibraryFileName())) {
-            for(int i = 0; i < value.length(); i++) {
-                fileWriter.println(value.charAt(i));
+            for(String readLine: input) {
+                fileWriter.println(readLine);
             }
         } catch (FileNotFoundException e) {
             return false;
@@ -114,25 +109,16 @@ public class eTextbook extends Media implements LibraryFunctions {
     public boolean checkOut() {
         //construct a File object with the name of the input file
         // then use the File object to construct a Scanner object
-        String value = "";
+        ArrayList<String> input = new ArrayList<>();
         try {
             Scanner inFile = new Scanner(new File(library.Utility.getLibraryFileName()));
             while (inFile.hasNextLine()) {
-                String input = inFile.nextLine();
-                Scanner readWord = new Scanner(input);
-                readWord.useDelimiter(",");
-                while(readWord.hasNext()) {
-                    value =  readWord.next();
-                    if(input.indexOf(this.title) > 0) {
-                        if (value.equals("in")) {
-                            value.replace("in", "out");
-                            break;
-                        } else {
-                            System.out.println("You can't check out the eTextbook since it's in the library.");
-                        }
-                    }
+                String readLine = inFile.nextLine();
+                if(readLine.indexOf(this.title) > 0) {
+                    readLine = readLine.replaceFirst("in", "out");
+                    this.checkInOut();
                 }
-                readWord.close();
+                input.add(readLine);
             }
             inFile.close();
         }
@@ -140,16 +126,12 @@ public class eTextbook extends Media implements LibraryFunctions {
             System.out.println("File not found.");
         }
         try (PrintWriter fileWriter = new PrintWriter(library.Utility.getLibraryFileName())) {
-            for(int i = 0; i < value.length(); i++) {
-                fileWriter.println(value.charAt(i));
+            for(String readLine: input) {
+                fileWriter.println(readLine);
             }
         } catch (FileNotFoundException e) {
             return false;
         }
         return false;
-    }
-    @Override
-    public String displayInfo() {
-        return "null";
     }
 }
