@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.LinkedList;
 
 public class LibraryFrame extends JFrame{
     private String searchFilter;
@@ -132,7 +133,7 @@ public class LibraryFrame extends JFrame{
         String _searchString = searchString.getText();
 
         // Add new values into drop-down
-        ArrayList<LibraryFunctions> displayList = new ArrayList<>();
+        LinkedList<LibraryFunctions> displayList = new LinkedList<>();
         Utility.listMedia().forEach((key, value) -> {
             if(value.toString().contains(searchFilter)) {
                 // If there's a search string, see if it's value matches (short-circuits)
