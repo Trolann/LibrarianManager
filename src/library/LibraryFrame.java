@@ -5,23 +5,47 @@ import java.util.LinkedList;
 import java.util.Objects;
 
 public class LibraryFrame extends JFrame{
+    // Components
+    private JTextField searchString;
+    private JComboBox<String> searchResultsComboBox;
+    private JButton checkInButton;
+    private JButton checkOutButton;
+    private JButton searchButton;
+    private JPanel mainPanel;
+    private JRadioButton bookRadioButton;
+    private JRadioButton audiobookRadioButton;
+    private JRadioButton eTextbookRadioButton;
+    private JRadioButton newspaperRadioButton;
+    private JRadioButton publishedPaperRadioButton;
+    private JRadioButton videoRadioButton;
+    private JLabel availabilityLabel;
+    private JButton pickSomethingForMeButton;
+    private final ButtonGroup radioButtonGroup = new ButtonGroup();
     private String searchFilter;
 
+    // Constructor
     public LibraryFrame() {
         setContentPane(mainPanel);
-
         setTitle("Library Manager");
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setVisible(true);
+        // Setup radio buttons
         radioButtonGroup.add(publishedPaperRadioButton);
         radioButtonGroup.add(bookRadioButton);
         radioButtonGroup.add(eTextbookRadioButton);
         radioButtonGroup.add(videoRadioButton);
         radioButtonGroup.add(newspaperRadioButton);
         radioButtonGroup.add(audiobookRadioButton);
+
+        // Setup dropdown
         searchResultsComboBox.addItem("Nothing selected");
 
+        // Listeners
+
+        // Pressing Search Button
         searchButton.addActionListener(e -> updateLibraryUI(searchFilter));
+
+        // Pressing a radio button sets the search filter (of the objects .toString) and updates the UI
         bookRadioButton.addActionListener(e -> {
             searchFilter = "Book";
             updateLibraryUI(searchFilter);
@@ -51,8 +75,10 @@ public class LibraryFrame extends JFrame{
             updateLibraryUI(searchFilter);
 
         });
-        searchResultsComboBox.addActionListener(e -> {
 
+        // Drop-down menu selection
+        searchResultsComboBox.addActionListener(e -> {
+            // If there's a search string in the GUI, use it to iterate thru the HashMap
             try {
                 String selection = Objects.requireNonNull(searchResultsComboBox.getSelectedItem()).toString();
                 Utility.listMedia().forEach((key, value) -> {
@@ -61,14 +87,18 @@ public class LibraryFrame extends JFrame{
                         availabilityLabel.setText(available);
                 });
             }
+            // This is thrown for the first result only
             catch (NullPointerException x) {
                 System.out.println("nullptr");
             }
         });
+
+        // Check-in button pressed
         checkInButton.addActionListener(e -> {
                 try {
                     String selection = Objects.requireNonNull(searchResultsComboBox.getSelectedItem()).toString();
                     Utility.listMedia().forEach((key, value) -> {
+                        // Confirm the title is checked out
                         if(selection.contains(value.getTitle()) && !value.isCheckedIn()) {
                             value.checkIn();
                             availabilityLabel.setText("Available!");
@@ -79,6 +109,7 @@ public class LibraryFrame extends JFrame{
                     System.out.println("nullptr");
                 }
         });
+        // Opposite of above
         checkOutButton.addActionListener(e -> {
             try {
                 String selection = Objects.requireNonNull(searchResultsComboBox.getSelectedItem()).toString();
@@ -93,6 +124,8 @@ public class LibraryFrame extends JFrame{
                 System.out.println("nullptr");
             }
         });
+
+        // Random Media implementation
         pickSomethingForMeButton.addActionListener(e -> {
             searchResultsComboBox.removeAllItems();
             radioButtonGroup.clearSelection();
@@ -101,6 +134,7 @@ public class LibraryFrame extends JFrame{
         });
     }
 
+    // Action which updates the UI with requires results, called by Search and RadioButton's
     public void updateLibraryUI(String searchFilter) {
         // Clear old values in drop-down (N/A check-in/out)
         searchResultsComboBox.removeAllItems();
@@ -110,11 +144,11 @@ public class LibraryFrame extends JFrame{
         LinkedList<LibraryFunctions> displayList = new LinkedList<>();
         Utility.listMedia().forEach((key, value) -> {
             if(value.toString().contains(searchFilter)) {
-                // If there's a search string, see if it's value matches (short-circuits)
+                // If there's a search string          Check the String, in lower case, to see if the given search string is in it
+                // Short-circuits if no search string
                 if (_searchString.length() > 0 && value.displayInfo().toLowerCase().contains(_searchString.toLowerCase())) {
                     displayList.add(value);
-                }
-                if (_searchString.length() == 0) {
+                } else {
                     // If we're here it's because there's no title search, displayList should have all objects
                     displayList.add(value);
                 }
@@ -122,29 +156,10 @@ public class LibraryFrame extends JFrame{
             }
         });
 
+        // Add all found elements to the drop-down
         for (LibraryFunctions mediaObject : displayList) {
             searchResultsComboBox.addItem(mediaObject.displayInfo());
         }
 
     }
-
-    private JTextField searchString;
-    private JComboBox<String> searchResultsComboBox;
-    private JButton checkInButton;
-    private JButton checkOutButton;
-    private JButton searchButton;
-    private JPanel mainPanel;
-    private JRadioButton bookRadioButton;
-    private JRadioButton audiobookRadioButton;
-    private JRadioButton eTextbookRadioButton;
-    private JRadioButton newspaperRadioButton;
-    private JRadioButton publishedPaperRadioButton;
-    private JRadioButton videoRadioButton;
-    private JLabel availabilityLabel;
-    private JButton pickSomethingForMeButton;
-    private final ButtonGroup radioButtonGroup = new ButtonGroup();
-
-
-
-
 }

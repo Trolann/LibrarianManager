@@ -18,28 +18,35 @@ public class Utility {
     // File must start with mediatype for each entry or the entry will be discarded.
     public final static String libraryFileName = "src/library/library.txt";
 
+    // Sub-classes access filename, this removed magic names
+
     public static String getLibraryFileName() {
         return libraryFileName;
     }
 
+
+    // This function is the recursive function for the listMedia function.
+    // This function takes in a growing _returnMap and shrinking _fileScanner
+    // and returns a complete _returnMap after exhausting the _fileScanner.
     public static HashMap<String, LibraryFunctions> _listMedia(HashMap<String, LibraryFunctions> _returnMap, Scanner _fileScanner) {
 
-        //Base case
+        // Base case, no more lines
         if (!_fileScanner.hasNext()) {
             return _returnMap;
         }
+        // Now we need to scan this line
         Scanner lineScanner = new Scanner(_fileScanner.nextLine());
         lineScanner.useDelimiter("\n");
 
         while (lineScanner.hasNext()) {
             // Get the next value, store in string to be safe
             String nextLine = lineScanner.next();
-            //System.out.println(nextLine);
+
+            // Delim the line into an array to get the media type (first value)
             String[] splitValues = nextLine.split(",");
 
-
             // This switch determines which Class to pass the nextLine to for creation
-            // and then casts the object to the Media type for display.
+            // and then casts the object to the LibraryFunctions type for display.
             switch(splitValues[0]) {
                 // Starts with..  ..add to return ...and auto-cast to Media
                 case "video" -> {
@@ -68,19 +75,21 @@ public class Utility {
                 }
             }
         }
-        lineScanner.close();
+        lineScanner.close(); // Cleanup
 
-        // Recur
+        // Recur passing growing _returnMap and shrinking _fileScanner
         return _listMedia(_returnMap, _fileScanner);
     }
 
-    // This function returns a LinkedList of Media objects for display in the GUI
+    // This function returns a HashMap keyed by the Title of each media.
+    // This function uses recursive calls to _listMedia to return a HashMap
+    // from  getLibraryFileName().
     public static HashMap<String, LibraryFunctions> listMedia() {
         HashMap<String, LibraryFunctions> returnMap = new HashMap<>();
         File libraryFile = new File(library.Utility.getLibraryFileName());
         Scanner fileScanner; // Assigned to quiet down IDE warnings
-        String nextLine;
 
+        // Try and open the file
         try {
             fileScanner = new Scanner(libraryFile);
         } catch (FileNotFoundException e) {
@@ -88,8 +97,9 @@ public class Utility {
             return returnMap;
         }
 
+        // Make recursive call to read from fileScanner into returnMap
         returnMap = _listMedia(returnMap, fileScanner);
-        fileScanner.close();
+        fileScanner.close(); // Cleanup
 
         return returnMap;
     }

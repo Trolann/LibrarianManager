@@ -9,66 +9,43 @@ import java.util.Objects;
 import java.util.Scanner;
 
 public class AudioBook extends Media implements LibraryFunctions {
-    private String bookAuthor;
-    private String readBy;
-    private int bookRating;
-    private int listeningTime;
+    // Additional primitives for future use, included in dataset
+    private final String bookAuthor;
+    private final String readBy;
+    private final int bookRating;
+    private final int listeningTime;
 
     // This Constructor takes in an entire line from the library file and parses it
     public AudioBook(String inputLine) {
         super(); // Must be first
-
+        int _bookRating;
+        int _listeningTime;
         String[] values = inputLine.split("\\s*,\\s*", -1); // Split into known value locations
-
         this.checkedIn = values[1].equals("in");
         this.title = values[2];
         this.creator = values[3];
         this.bookAuthor = values[3];
         this.readBy = values[4];
+        // Prevent parsing/casting errors
         try {
-            this.bookRating = Integer.parseInt(values[5]);
+            _bookRating = Integer.parseInt(values[5]);
         } catch (NumberFormatException e) {
-            this.bookRating = -1;
+            _bookRating = -1;
         }
+        this.bookRating = _bookRating;
         try {
-            this.listeningTime = Integer.parseInt(values[6]);
+            _listeningTime = Integer.parseInt(values[6]);
         } catch (NumberFormatException e) {
-            this.listeningTime = -1;
+            _listeningTime = -1;
         }
+        this.listeningTime = _listeningTime;
     }
 
-    public String getBookAuthor() {
-        return bookAuthor;
+    // Overridden functions
+    @Override
+    public String displayInfo() {
+        return this.title +" written by: " + this.creator;
     }
-
-    public void setBookAuthor(String bookAuthor) {
-        this.bookAuthor = bookAuthor;
-    }
-
-    public String getReadBy() {
-        return readBy;
-    }
-
-    public void setReadBy(String readBy) {
-        this.readBy = readBy;
-    }
-
-    public int getBookRating() {
-        return bookRating;
-    }
-
-    public void setBookRating(int bookRating) {
-        this.bookRating = bookRating;
-    }
-
-    public int getListeningTime() {
-        return listeningTime;
-    }
-
-    public void setListeningTime(int listeningTime) {
-        this.listeningTime = listeningTime;
-    }
-
 
     @Override
     public String toString() {
@@ -76,7 +53,7 @@ public class AudioBook extends Media implements LibraryFunctions {
                 "creator='" + creator + '\'' +
                 ", title='" + title + '\'' +
                 ", checkedIn=" + checkedIn +
-                '}';
+                '}' + displayOtherInfo();
     }
 
     @Override
@@ -104,48 +81,57 @@ public class AudioBook extends Media implements LibraryFunctions {
         _checkInOut(false);
     }
 
+    // Public functions
+    // Created to silence IDE warnings
+    public String displayOtherInfo() {
+        return "Read by: " + this.readBy + " Author: " + this.bookAuthor + " " + this.listeningTime + " minutes. Rated: " + this.bookRating + "/10";
+    }
+
     // Single function to open a file and rewrite to it. Boolean determines the value
-    // for this particular Video file
+    // for this particular Video file, prevents redundant code. This function is unable to
+    // call listMedia as it will strip away needed information for other objects (books, etc)
+    // in the library file.
     private boolean _checkInOut(boolean checkInMedia) {
-        File theFile = new File(library.Utility.getLibraryFileName());
-        Scanner fileScanner; // Assigned to quiet down IDE warnings
+        File libraryFile = new File(library.Utility.getLibraryFileName());
 
-        ArrayList<String> fileLines = new ArrayList<String>();
-        String newAvailabilityValue = checkInMedia ? "in" : "out";
-        String oldAvailabilityValue = checkInMedia ? "out" : "in";
+        // ArrayList to act as buffer for filelines as they're read before they're written
+        ArrayList<String> fileLines = new ArrayList<>();
 
-        try {
-            fileScanner = new Scanner(theFile);
+        // Read from the file, catch exceptions and auto-close
+        try (Scanner fileScanner = new Scanner(libraryFile)) {
+
+
+            // Toggle availability by using the boolean argument
+            String newAvailabilityValue = checkInMedia ? ",in," : ",out,";
+            String oldAvailabilityValue = checkInMedia ? ",out," : ",in,";
+            // Iterate thru the file to find the line with the title we need
+            while(fileScanner.hasNextLine()) {
+                String line = fileScanner.nextLine();
+
+                // If the exact title is in the object name
+                if(line.indexOf(this.title) > 0) {
+                    // Toggle
+                    line = line.replace(oldAvailabilityValue, newAvailabilityValue);
+                    this.checkInOut();
+                }
+                // Add to buffer for rewriting
+                fileLines.add(line);
+            }
         } catch (FileNotFoundException e) {
             System.out.println(library.Utility.getLibraryFileName() + " was not found.");
             return false;
         }
 
-        while(fileScanner.hasNextLine()) {
-            String line = fileScanner.nextLine();
-
-            if(line.indexOf(this.title) > 0) {
-                line = line.replace(oldAvailabilityValue, newAvailabilityValue);
-                this.checkInOut();
-            }
-            fileLines.add(line);
-        }
-        fileScanner.close();
-
         // Writes all contents back to the file. Automatically closes
-        try (PrintWriter fileWriter = new PrintWriter(theFile)) {
+        try (PrintWriter fileWriter = new PrintWriter(libraryFile)) {
             for(String line : fileLines) {
                 fileWriter.println(line);
             }
         } catch (FileNotFoundException e) {
+            System.out.println(library.Utility.getLibraryFileName() + " was not found.");
             return false;
         }
 
         return true;
-    }
-
-    @Override
-    public String displayInfo() {
-        return this.title +" written by: " + this.creator;
     }
 }

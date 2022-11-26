@@ -9,6 +9,7 @@ import java.util.Objects;
 import java.util.Scanner;
 
 public class Video extends Media implements LibraryFunctions {
+    // Additional primitives for future use, included in dataset
     private final String videoDirector;
     private final String videoStarActor;
     private int videoRating;
@@ -24,6 +25,7 @@ public class Video extends Media implements LibraryFunctions {
         this.creator = values[3];
         this.videoDirector = values[3];
         this.videoStarActor = values[4];
+        // Prevent parsing/casting errors
         try {
             this.videoRating = Integer.parseInt(values[5]);
         } catch (NumberFormatException e) {
@@ -36,17 +38,10 @@ public class Video extends Media implements LibraryFunctions {
         }
     }
 
+    // Overridden functions
     @Override
     public String displayInfo() {
         return this.getTitle() + " Directed by: " + this.getVideoDirector();
-    }
-
-    public String displayOtherInfo() {
-        return "Starring: " + this.videoStarActor + " " + this.videoRuntime + " minutes. Rated: " + this.videoRating + "/10";
-    }
-
-    public String getVideoDirector() {
-        return videoDirector;
     }
 
     @Override
@@ -66,6 +61,7 @@ public class Video extends Media implements LibraryFunctions {
         return this.title.equals(video.getTitle());
     }
 
+    // Required for Media hashing
     @Override
     public int hashCode() {
         return Objects.hash(this.title);
@@ -83,33 +79,51 @@ public class Video extends Media implements LibraryFunctions {
         _checkInOut(false);
     }
 
+    // Public functions
+    // Created to silence IDE warnings
+    public String displayOtherInfo() {
+        return "Starring: " + this.videoStarActor + " " + this.videoRuntime + " minutes. Rated: " + this.videoRating + "/10";
+    }
+
+    // Getter
+    public String getVideoDirector() {
+        return videoDirector;
+    }
+
     // Single function to open a file and rewrite to it. Boolean determines the value
-    // for this particular Video file
+    // for this particular Video file, prevents redundant code. This function is unable to
+    // call listMedia as it will strip away needed information for other objects (books, etc)
+    // in the library file.
     private boolean _checkInOut(boolean checkInMedia) {
         File libraryFile = new File(library.Utility.getLibraryFileName());
-        Scanner fileScanner; // Assigned to quiet down IDE warnings
 
+        // ArrayList to act as buffer for filelines as they're read before they're written
         ArrayList<String> fileLines = new ArrayList<>();
-        String newAvailabilityValue = checkInMedia ? ",in," : ",out,";
-        String oldAvailabilityValue = checkInMedia ? ",out," : ",in,";
 
-        try {
-            fileScanner = new Scanner(libraryFile);
+        // Read from the file, catch exceptions and auto-close
+        try (Scanner fileScanner = new Scanner(libraryFile)) {
+
+
+            // Toggle availability by using the boolean argument
+            String newAvailabilityValue = checkInMedia ? ",in," : ",out,";
+            String oldAvailabilityValue = checkInMedia ? ",out," : ",in,";
+            // Iterate thru the file to find the line with the title we need
+            while(fileScanner.hasNextLine()) {
+                String line = fileScanner.nextLine();
+
+                // If the exact title is in the object name
+                if(line.indexOf(this.title) > 0) {
+                    // Toggle
+                    line = line.replace(oldAvailabilityValue, newAvailabilityValue);
+                    this.checkInOut();
+                }
+                // Add to buffer for rewriting
+                fileLines.add(line);
+            }
         } catch (FileNotFoundException e) {
             System.out.println(library.Utility.getLibraryFileName() + " was not found.");
             return false;
         }
-
-        while(fileScanner.hasNextLine()) {
-            String line = fileScanner.nextLine();
-
-            if(line.indexOf(this.title) > 0) {
-                line = line.replace(oldAvailabilityValue, newAvailabilityValue);
-                this.checkInOut();
-            }
-            fileLines.add(line);
-        }
-        fileScanner.close();
 
         // Writes all contents back to the file. Automatically closes
         try (PrintWriter fileWriter = new PrintWriter(libraryFile)) {
@@ -117,6 +131,7 @@ public class Video extends Media implements LibraryFunctions {
                 fileWriter.println(line);
             }
         } catch (FileNotFoundException e) {
+            System.out.println(library.Utility.getLibraryFileName() + " was not found.");
             return false;
         }
 
