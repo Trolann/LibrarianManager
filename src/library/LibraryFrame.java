@@ -3,8 +3,8 @@ package library;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.Objects;
 
 public class LibraryFrame extends JFrame{
     private String searchFilter;
@@ -15,118 +15,99 @@ public class LibraryFrame extends JFrame{
         setTitle("Library Manager");
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setVisible(true);
-
+        radioButtonGroup.add(publishedPaperRadioButton);
+        radioButtonGroup.add(bookRadioButton);
+        radioButtonGroup.add(eTextbookRadioButton);
+        radioButtonGroup.add(videoRadioButton);
+        radioButtonGroup.add(newspaperRadioButton);
+        radioButtonGroup.add(audiobookRadioButton);
         searchResultsComboBox.addItem("Nothing selected");
 
-        searchButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                updateLibraryUI(searchFilter);
-            }
+        searchButton.addActionListener(e -> updateLibraryUI(searchFilter));
+        bookRadioButton.addActionListener(e -> {
+            searchFilter = "Book";
+            updateLibraryUI(searchFilter);
         });
-        bookRadioButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                searchFilter = "Book";
-                updateLibraryUI(searchFilter);
-            }
-        });
-        audiobookRadioButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                searchFilter = "Audiobook";
-                updateLibraryUI(searchFilter);
+        audiobookRadioButton.addActionListener(e -> {
+            searchFilter = "Audiobook";
+            updateLibraryUI(searchFilter);
 
+        });
+        eTextbookRadioButton.addActionListener(e -> {
+            searchFilter = "eTextbook";
+            updateLibraryUI(searchFilter);
+
+        });
+        newspaperRadioButton.addActionListener(e -> {
+            searchFilter = "Newspaper";
+            updateLibraryUI(searchFilter);
+
+        });
+        publishedPaperRadioButton.addActionListener(e -> {
+            searchFilter = "PublishedPaper";
+            updateLibraryUI(searchFilter);
+
+        });
+        videoRadioButton.addActionListener(e -> {
+            searchFilter = "Video";
+            updateLibraryUI(searchFilter);
+
+        });
+        searchResultsComboBox.addActionListener(e -> {
+
+            try {
+                String selection = searchResultsComboBox.getSelectedItem().toString();
+                Utility.listMedia().forEach((key, value) -> {
+                    String available = value.isCheckedIn() ? "Available!" : "Checked out :(";
+                    if(selection.toString().contains(value.getTitle()))
+                        availabilityLabel.setText(available);
+                });
+            }
+            catch (NullPointerException x) {
+                System.out.println("nullptr");
             }
         });
-        eTextbookRadioButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                searchFilter = "eTextbook";
-                updateLibraryUI(searchFilter);
-
-            }
-        });
-        newspaperRadioButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                searchFilter = "Newspaper";
-                updateLibraryUI(searchFilter);
-
-            }
-        });
-        publishedPaperRadioButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                searchFilter = "PublishedPaper";
-                updateLibraryUI(searchFilter);
-
-            }
-        });
-        videoRadioButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                searchFilter = "Video";
-                updateLibraryUI(searchFilter);
-
-            }
-        });
-        searchResultsComboBox.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-
-                try {
-                    String selection = searchResultsComboBox.getSelectedItem().toString();
-                    Utility.listMedia().forEach((key, value) -> {
+        checkInButton.addActionListener(e -> {
+            try {
+                String selection = searchResultsComboBox.getSelectedItem().toString();
+                Utility.listMedia().forEach((key, value) -> {
+                    if(selection.toString().contains(value.getTitle())) {
+                        value.checkIn();
                         String available = value.isCheckedIn() ? "Available!" : "Checked out :(";
-                        if(selection.toString().contains(value.getTitle()))
-                            availabilityLabel.setText(available);
-                    });
-                }
-                catch (NullPointerException x) {
-                    System.out.println("nullptr");
-                }
+                        availabilityLabel.setText(available);
+                    }
+                });
+            }
+            catch (NullPointerException x) {
+                System.out.println("nullptr");
             }
         });
-        checkInButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                try {
-                    String selection = searchResultsComboBox.getSelectedItem().toString();
-                    Utility.listMedia().forEach((key, value) -> {
-                        if(selection.toString().contains(value.getTitle())) {
-                            value.checkIn();
-                            String available = value.isCheckedIn() ? "Available!" : "Checked out :(";
-                            availabilityLabel.setText(available);
-                        }
-                    });
-                }
-                catch (NullPointerException x) {
-                    System.out.println("nullptr");
-                }
+        checkOutButton.addActionListener(e -> {
+            try {
+                String selection = searchResultsComboBox.getSelectedItem().toString();
+                Utility.listMedia().forEach((key, value) -> {
+                    if(selection.toString().contains(value.getTitle())) {
+                        value.checkOut();
+                        String available = value.isCheckedIn() ? "Available!" : "Checked out :(";
+                        availabilityLabel.setText(available);
+                    }
+                });
+            }
+            catch (NullPointerException x) {
+                System.out.println("nullptr");
             }
         });
-        checkOutButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                try {
-                    String selection = searchResultsComboBox.getSelectedItem().toString();
-                    Utility.listMedia().forEach((key, value) -> {
-                        if(selection.toString().contains(value.getTitle())) {
-                            value.checkOut();
-                            String available = value.isCheckedIn() ? "Available!" : "Checked out :(";
-                            availabilityLabel.setText(available);
-                        }
-                    });
-                }
-                catch (NullPointerException x) {
-                    System.out.println("nullptr");
-                }
-            }
+        pickSomethingForMeButton.addActionListener(e -> {
+            searchResultsComboBox.removeAllItems();
+            radioButtonGroup.clearSelection();
+            searchResultsComboBox.addItem(Objects.requireNonNull(Utility.getRandom()).displayInfo());
+
         });
     }
 
-
+    public String getSearchFilter(){
+        return this.searchFilter;
+    }
     public void updateLibraryUI(String searchFilter) {
         // Clear old values in drop-down (N/A check-in/out)
         searchResultsComboBox.removeAllItems();
@@ -169,6 +150,11 @@ public class LibraryFrame extends JFrame{
     private JRadioButton publishedPaperRadioButton;
     private JRadioButton videoRadioButton;
     private JLabel availabilityLabel;
+    private JButton pickSomethingForMeButton;
     private JButton randomMediaButton;
+    private ButtonGroup radioButtonGroup = new ButtonGroup();
+
+
+
 
 }
