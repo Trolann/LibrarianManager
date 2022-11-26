@@ -6,7 +6,9 @@ public abstract class Media implements Comparable<Media> {
     protected String creator;
     protected String title;
     protected boolean checkedIn;
-
+    public boolean isCheckedIn() {
+        return checkedIn;
+    }
     public void checkInOut() {this.checkedIn = !this.checkedIn; }
 
     // Constructor - Media must be made with the Title and publishedDate in order to facilitate comparing
@@ -23,9 +25,7 @@ public abstract class Media implements Comparable<Media> {
         this.checkedIn = false;
     }
 
-    public boolean isCheckedIn() {
-        return checkedIn;
-    }
+
 
     // Abstract methods
     abstract public String displayInfo();

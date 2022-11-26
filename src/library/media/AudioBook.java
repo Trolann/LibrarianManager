@@ -108,7 +108,7 @@ public class AudioBook extends Media implements LibraryFunctions {
     // for this particular Video file
     private boolean _checkInOut(boolean checkInMedia) {
         File theFile = new File(library.Utility.getLibraryFileName());
-        Scanner fileScanner = null; // Assigned to quiet down IDE warnings
+        Scanner fileScanner; // Assigned to quiet down IDE warnings
 
         ArrayList<String> fileLines = new ArrayList<String>();
         String newAvailabilityValue = checkInMedia ? "in" : "out";

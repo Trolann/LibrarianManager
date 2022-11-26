@@ -114,8 +114,8 @@ public class Video extends Media implements LibraryFunctions {
         Scanner fileScanner = null; // Assigned to quiet down IDE warnings
 
         ArrayList<String> fileLines = new ArrayList<String>();
-        String newAvailabilityValue = checkInMedia ? "in" : "out";
-        String oldAvailabilityValue = checkInMedia ? "out" : "in";
+        String newAvailabilityValue = checkInMedia ? ",in," : ",out,";
+        String oldAvailabilityValue = checkInMedia ? ",out," : ",in,";
 
         try {
             fileScanner = new Scanner(libraryFile);
