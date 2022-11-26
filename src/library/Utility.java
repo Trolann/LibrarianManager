@@ -22,6 +22,58 @@ public class Utility {
         return libraryFileName;
     }
 
+    public static HashMap<String, LibraryFunctions> _listMedia(HashMap<String, LibraryFunctions> _returnMap, Scanner _fileScanner) {
+
+        //Base case
+        if (!_fileScanner.hasNext()) {
+            return _returnMap;
+        }
+        Scanner lineScanner = new Scanner(_fileScanner.nextLine());
+        lineScanner.useDelimiter("\n");
+
+        while (lineScanner.hasNext()) {
+            // Get the next value, store in string to be safe
+            String nextLine = lineScanner.next();
+            //System.out.println(nextLine);
+            String[] splitValues = nextLine.split(",");
+
+
+            // This switch determines which Class to pass the nextLine to for creation
+            // and then casts the object to the Media type for display.
+            switch(splitValues[0]) {
+                // Starts with..  ..add to return ...and auto-cast to Media
+                case "video" -> {
+                    Video o = new Video(nextLine);
+                    _returnMap.put(o.getTitle(), o);
+                }
+                case "audiobook" -> {
+                    AudioBook o = new AudioBook(nextLine);
+                    _returnMap.put(o.getTitle(), o);
+                }
+                case "book" -> {
+                    Book o = new Book(nextLine);
+                    _returnMap.put(o.getTitle(), o);
+                }
+                case "publishedPaper" -> {
+                    PublishedPaper o = new PublishedPaper(nextLine);
+                    _returnMap.put(o.getTitle(), o);
+                }
+                case "newspaper" -> {
+                    Newspaper o = new Newspaper(nextLine);
+                    _returnMap.put(o.getTitle(), o);
+                }
+                case "eTextbook" -> {
+                    eTextbook o = new eTextbook(nextLine);
+                    _returnMap.put(o.getTitle(), o);
+                }
+            }
+        }
+        lineScanner.close();
+
+        // Recur
+        return _listMedia(_returnMap, _fileScanner);
+    }
+
     // This function returns a LinkedList of Media objects for display in the GUI
     public static HashMap<String, LibraryFunctions> listMedia() {
         HashMap<String, LibraryFunctions> returnMap = new HashMap<>();
@@ -36,49 +88,7 @@ public class Utility {
             return returnMap;
         }
 
-        while(fileScanner.hasNextLine()) {
-            Scanner lineScanner = new Scanner(fileScanner.nextLine());
-            lineScanner.useDelimiter("\n");
-
-            while (lineScanner.hasNext()) {
-                // Get the next value, store in string to be safe
-                nextLine = lineScanner.next();
-                //System.out.println(nextLine);
-                String[] splitValues = nextLine.split(",");
-
-
-                // This switch determines which Class to pass the nextLine to for creation
-                // and then casts the object to the Media type for display.
-                switch(splitValues[0]) {
-                    // Starts with..  ..add to return ...and auto-cast to Media
-                    case "video" -> {
-                        Video o = new Video(nextLine);
-                        returnMap.put(o.getTitle(), o);
-                    }
-                    case "audiobook" -> {
-                        AudioBook o = new AudioBook(nextLine);
-                        returnMap.put(o.getTitle(), o);
-                    }
-                    case "book" -> {
-                        Book o = new Book(nextLine);
-                        returnMap.put(o.getTitle(), o);
-                    }
-                    case "publishedPaper" -> {
-                        PublishedPaper o = new PublishedPaper(nextLine);
-                        returnMap.put(o.getTitle(), o);
-                    }
-                    case "newspaper" -> {
-                        Newspaper o = new Newspaper(nextLine);
-                        returnMap.put(o.getTitle(), o);
-                    }
-                    case "eTextbook" -> {
-                        eTextbook o = new eTextbook(nextLine);
-                        returnMap.put(o.getTitle(), o);
-                    }
-                }
-            }
-            lineScanner.close();
-        }
+        returnMap = _listMedia(returnMap, fileScanner);
         fileScanner.close();
 
         return returnMap;

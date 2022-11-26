@@ -9,8 +9,8 @@ import java.util.Objects;
 import java.util.Scanner;
 
 public class Video extends Media implements LibraryFunctions {
-    private String videoDirector;
-    private String videoStarActor;
+    private final String videoDirector;
+    private final String videoStarActor;
     private int videoRating;
     private int videoRuntime;
 
@@ -41,36 +41,12 @@ public class Video extends Media implements LibraryFunctions {
         return this.getTitle() + " Directed by: " + this.getVideoDirector();
     }
 
+    public String displayOtherInfo() {
+        return "Starring: " + this.videoStarActor + " " + this.videoRuntime + " minutes. Rated: " + this.videoRating + "/10";
+    }
+
     public String getVideoDirector() {
         return videoDirector;
-    }
-
-    public void setVideoDirector(String videoDirector) {
-        this.videoDirector = videoDirector;
-    }
-
-    public String getVideoStarActor() {
-        return videoStarActor;
-    }
-
-    public void setVideoStarActor(String videoStarActor) {
-        this.videoStarActor = videoStarActor;
-    }
-
-    public int getVideoRating() {
-        return videoRating;
-    }
-
-    public void setVideoRating(int videoRating) {
-        this.videoRating = videoRating;
-    }
-
-    public int getVideoRuntime() {
-        return videoRuntime;
-    }
-
-    public void setVideoRuntime(int videoRuntime) {
-        this.videoRuntime = videoRuntime;
     }
 
     @Override
@@ -79,7 +55,7 @@ public class Video extends Media implements LibraryFunctions {
                 "creator='" + creator + '\'' +
                 ", title='" + title + '\'' +
                 ", checkedIn=" + checkedIn +
-                '}';
+                '}' + displayOtherInfo();
     }
 
     @Override
@@ -111,9 +87,9 @@ public class Video extends Media implements LibraryFunctions {
     // for this particular Video file
     private boolean _checkInOut(boolean checkInMedia) {
         File libraryFile = new File(library.Utility.getLibraryFileName());
-        Scanner fileScanner = null; // Assigned to quiet down IDE warnings
+        Scanner fileScanner; // Assigned to quiet down IDE warnings
 
-        ArrayList<String> fileLines = new ArrayList<String>();
+        ArrayList<String> fileLines = new ArrayList<>();
         String newAvailabilityValue = checkInMedia ? ",in," : ",out,";
         String oldAvailabilityValue = checkInMedia ? ",out," : ",in,";
 
