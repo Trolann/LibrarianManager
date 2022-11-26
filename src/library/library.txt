@@ -2,7 +2,7 @@ video,in,Venom Let There Be Carnage,Andy Serkis,Tom Hardy,97,6.8
 video,out,Eternals,Chloé Zhao,Gemma Chan,157,7.1
 video,in,Dune,Denis Villeneuve,Timothée Chalamet,155,8
 video,in,Army of Thieves,Matthias Schweighöfer,Matthias Schweighöfer,127,6.9
-video,out,Free Guy,Shawn Levy,Ryan Reynolds,115,7.8
+video,in,Free Guy,Shawn Levy,Ryan Reynolds,115,7.8
 video,in,Gunpowder Milkshake,Navot Papushado,Karen Gillan,114,6.5
 video,in,Venom,Ruben Fleischer,Tom Hardy,112,6.8
 video,in,Halloween Kills,David Gordon Green,Jamie Lee Curtis,105,7
@@ -24,7 +24,7 @@ audiobook,out,Rich Dad Poor Dad: What the Rich Teach Their Kids About Money - Th
 audiobook,in,The 5AM Club: Own Your Morning. Elevate Your Life.,Robin Sharma,Unknown,664,4.4
 audiobook,in,Influence: The Psychology of Persuasion,Robert B. Cialdini,Unknown,606,4.4
 audiobook,out,Dream With Your Eyes Open: An Entrepreneurial Journey,Ronnie Screwvala,Unknown,439,3.6
-audiobook,in,The Sandman,Neil Gaiman,Unknown,654,5
+audiobook,out,The Sandman,Neil Gaiman,Unknown,654,5
 audiobook,out,How to Wout Friends and Influence People,Dale Carnegie,Unknown,485,4.5
 audiobook,out,The Alchemist: A Fable About Following Your Dream,Paulo Coelho,Unknown,240,4.6
 newspaper,in,The Evolution of Kratos,Alyse Stanley,12671905,The Washington Post,2022-11-13

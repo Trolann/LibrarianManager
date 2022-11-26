@@ -68,28 +68,26 @@ public class LibraryFrame extends JFrame{
             }
         });
         checkInButton.addActionListener(e -> {
-            try {
-                String selection = searchResultsComboBox.getSelectedItem().toString();
-                Utility.listMedia().forEach((key, value) -> {
-                    if(selection.toString().contains(value.getTitle())) {
-                        value.checkIn();
-                        String available = value.isCheckedIn() ? "Available!" : "Checked out :(";
-                        availabilityLabel.setText(available);
-                    }
-                });
-            }
-            catch (NullPointerException x) {
-                System.out.println("nullptr");
-            }
+                try {
+                    String selection = Objects.requireNonNull(searchResultsComboBox.getSelectedItem()).toString();
+                    Utility.listMedia().forEach((key, value) -> {
+                        if(selection.contains(value.getTitle()) && !value.isCheckedIn()) {
+                            value.checkIn();
+                            availabilityLabel.setText("Available!");
+                        }
+                    });
+                }
+                catch (NullPointerException x) {
+                    System.out.println("nullptr");
+                }
         });
         checkOutButton.addActionListener(e -> {
             try {
-                String selection = searchResultsComboBox.getSelectedItem().toString();
+                String selection = Objects.requireNonNull(searchResultsComboBox.getSelectedItem()).toString();
                 Utility.listMedia().forEach((key, value) -> {
-                    if(selection.toString().contains(value.getTitle())) {
+                    if(selection.contains(value.getTitle()) && value.isCheckedIn()) {
                         value.checkOut();
-                        String available = value.isCheckedIn() ? "Available!" : "Checked out :(";
-                        availabilityLabel.setText(available);
+                        availabilityLabel.setText("Checked out :(");
                     }
                 });
             }
