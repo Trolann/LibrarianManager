@@ -1,6 +1,5 @@
 package library.media;
 import library.LibraryFunctions;
-import library.Utility;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -95,14 +94,14 @@ public class AudioBook extends Media implements LibraryFunctions {
 
     // Interface function which is a wrapper for the checkInOut function
     @Override
-    public boolean checkIn(){
-        return _checkInOut(true);
+    public void checkIn(){
+        _checkInOut(true);
     }
 
     // Interface function which is a wrapper for the checkInOut function
     @Override
-    public boolean checkOut(){
-        return _checkInOut(false);
+    public void checkOut(){
+        _checkInOut(false);
     }
 
     // Single function to open a file and rewrite to it. Boolean determines the value

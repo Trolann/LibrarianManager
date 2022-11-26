@@ -76,7 +76,7 @@ public class eTextbook extends Media implements LibraryFunctions {
     }
 
     @Override
-    public boolean checkIn() {
+    public void checkIn() {
         //construct a File object with the name of the input file
         // then use the File object to construct a Scanner object
         ArrayList<String> input = new ArrayList<>();
@@ -100,13 +100,11 @@ public class eTextbook extends Media implements LibraryFunctions {
                 fileWriter.println(readLine);
             }
         } catch (FileNotFoundException e) {
-            return false;
         }
-        return false;
     }
 
     @Override
-    public boolean checkOut() {
+    public void checkOut() {
         //construct a File object with the name of the input file
         // then use the File object to construct a Scanner object
         ArrayList<String> input = new ArrayList<>();
@@ -130,8 +128,6 @@ public class eTextbook extends Media implements LibraryFunctions {
                 fileWriter.println(readLine);
             }
         } catch (FileNotFoundException e) {
-            return false;
         }
-        return false;
     }
 }

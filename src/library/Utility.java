@@ -26,7 +26,7 @@ public class Utility {
     public static HashMap<String, LibraryFunctions> listMedia() {
         HashMap<String, LibraryFunctions> returnMap = new HashMap<>();
         File libraryFile = new File(library.Utility.getLibraryFileName());
-        Scanner fileScanner = null; // Assigned to quiet down IDE warnings
+        Scanner fileScanner; // Assigned to quiet down IDE warnings
         String nextLine;
 
         try {

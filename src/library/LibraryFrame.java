@@ -1,8 +1,6 @@
 package library;
 
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.LinkedList;
 import java.util.Objects;
 
@@ -56,10 +54,10 @@ public class LibraryFrame extends JFrame{
         searchResultsComboBox.addActionListener(e -> {
 
             try {
-                String selection = searchResultsComboBox.getSelectedItem().toString();
+                String selection = Objects.requireNonNull(searchResultsComboBox.getSelectedItem()).toString();
                 Utility.listMedia().forEach((key, value) -> {
                     String available = value.isCheckedIn() ? "Available!" : "Checked out :(";
-                    if(selection.toString().contains(value.getTitle()))
+                    if(selection.contains(value.getTitle()))
                         availabilityLabel.setText(available);
                 });
             }
@@ -103,9 +101,6 @@ public class LibraryFrame extends JFrame{
         });
     }
 
-    public String getSearchFilter(){
-        return this.searchFilter;
-    }
     public void updateLibraryUI(String searchFilter) {
         // Clear old values in drop-down (N/A check-in/out)
         searchResultsComboBox.removeAllItems();
@@ -138,9 +133,7 @@ public class LibraryFrame extends JFrame{
     private JButton checkInButton;
     private JButton checkOutButton;
     private JButton searchButton;
-    private JLabel resultCreatorsName;
     private JPanel mainPanel;
-    private JLabel lblCreatorsName;
     private JRadioButton bookRadioButton;
     private JRadioButton audiobookRadioButton;
     private JRadioButton eTextbookRadioButton;
@@ -149,8 +142,7 @@ public class LibraryFrame extends JFrame{
     private JRadioButton videoRadioButton;
     private JLabel availabilityLabel;
     private JButton pickSomethingForMeButton;
-    private JButton randomMediaButton;
-    private ButtonGroup radioButtonGroup = new ButtonGroup();
+    private final ButtonGroup radioButtonGroup = new ButtonGroup();
 
 
 

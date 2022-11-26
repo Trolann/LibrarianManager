@@ -1,10 +1,10 @@
 package library;
 
 public interface LibraryFunctions {
-    public boolean checkIn();
-    public boolean checkOut();
+    void checkIn();
+    void checkOut();
 
-    public String displayInfo(); // Allows for all Media subclasses to be stored together for GUI
-    public String getTitle();
-    public boolean isCheckedIn();
+    String displayInfo(); // Allows for all Media subclasses to be stored together for GUI
+    String getTitle();
+    boolean isCheckedIn();
 }

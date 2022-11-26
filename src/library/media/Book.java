@@ -13,8 +13,9 @@ import java.util.Scanner;
 
 public class Book extends Media implements LibraryFunctions {
 
-    private String bookPublisher, bookISBN;
-    private LocalDate bookPublicationDate;
+    private final String bookPublisher;
+    private final String bookISBN;
+    private final LocalDate bookPublicationDate;
 
     public Book(String inputLine) {
         super();
@@ -39,24 +40,12 @@ public class Book extends Media implements LibraryFunctions {
         return bookPublicationDate;
     }
 
-    public void setBookPublicationDate(LocalDate bookPublicationDate) {
-        this.bookPublicationDate = bookPublicationDate;
-    }
-
     public String getBookPublisher() {
         return bookPublisher;
     }
 
-    public void setBookPublisher(String bookPublisher) {
-        this.bookPublisher = bookPublisher;
-    }
-
     public String getBookISBN() {
         return bookISBN;
-    }
-
-    public void setBookISBN(String bookISBN) {
-        this.bookISBN = bookISBN;
     }
 
     @Override
@@ -65,12 +54,16 @@ public class Book extends Media implements LibraryFunctions {
     }
 
     @Override
-    public boolean checkIn() { return handler(false); }
+    public void checkIn() {
+        handler(false);
+    }
 
     @Override
-    public boolean checkOut() { return handler(true); }
+    public void checkOut() {
+        handler(true);
+    }
 
-    private boolean handler(boolean availability) {
+    private void handler(boolean availability) {
         Queue<String> fileLines = new LinkedList<>();
 
         try(Scanner inputFile = new Scanner(new File(library.Utility.getLibraryFileName()))) {
@@ -86,7 +79,7 @@ public class Book extends Media implements LibraryFunctions {
 
         } catch (FileNotFoundException e) {
             System.out.println(library.Utility.getLibraryFileName() + " was not in the specified directory.");
-            return false;
+            return;
         }
         try(PrintWriter outputFile = new PrintWriter(library.Utility.getLibraryFileName())){
             while(!fileLines.isEmpty()) {
@@ -94,9 +87,7 @@ public class Book extends Media implements LibraryFunctions {
             }
         } catch (FileNotFoundException e) {
             System.out.println(library.Utility.getLibraryFileName() + " was not in the specified directory.");
-            return false;
         }
-        return true;
     }
 
     @Override

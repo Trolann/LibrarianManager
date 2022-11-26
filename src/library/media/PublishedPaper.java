@@ -13,8 +13,9 @@ import java.util.Scanner;
 
 public class PublishedPaper extends Media implements LibraryFunctions {
 
-    private String publishedPaperTopic, publishedPaperISSN;
-    private LocalDate publishedPaperPublicationDate;
+    private final String publishedPaperTopic;
+    private final String publishedPaperISSN;
+    private final LocalDate publishedPaperPublicationDate;
 
     public PublishedPaper(String inputLine) {
         super();
@@ -40,24 +41,12 @@ public class PublishedPaper extends Media implements LibraryFunctions {
         return publishedPaperTopic;
     }
 
-    public void setPublishedPaperTopic(String publishedPaperTopic) {
-        this.publishedPaperTopic = publishedPaperTopic;
-    }
-
     public LocalDate getPublishedPaperPublicationDate() {
         return publishedPaperPublicationDate;
     }
 
-    public void setPublishedPaperPublicationDate(LocalDate publishedPaperPublicationDate) {
-        this.publishedPaperPublicationDate = publishedPaperPublicationDate;
-    }
-
     public String getPublishedPaperISSN() {
         return publishedPaperISSN;
-    }
-
-    public void setPublishedPaperISSN(String publishedPaperISSN) {
-        this.publishedPaperISSN = publishedPaperISSN;
     }
 
     @Override
@@ -66,12 +55,16 @@ public class PublishedPaper extends Media implements LibraryFunctions {
     }
 
     @Override
-    public boolean checkIn() { return handler(false); }
+    public void checkIn() {
+        handler(false);
+    }
 
     @Override
-    public boolean checkOut() { return handler(true); }
+    public void checkOut() {
+        handler(true);
+    }
 
-    private boolean handler(boolean availability) {
+    private void handler(boolean availability) {
         Queue<String> fileLines = new LinkedList<>();
 
         try(Scanner inputFile = new Scanner(new File(library.Utility.getLibraryFileName()))) {
@@ -87,7 +80,7 @@ public class PublishedPaper extends Media implements LibraryFunctions {
 
         } catch (FileNotFoundException e) {
             System.out.println(library.Utility.getLibraryFileName() + " was not in the specified directory.");
-            return false;
+            return;
         }
         try(PrintWriter outputFile = new PrintWriter(library.Utility.getLibraryFileName())){
             while(!fileLines.isEmpty()) {
@@ -95,9 +88,7 @@ public class PublishedPaper extends Media implements LibraryFunctions {
             }
         } catch (FileNotFoundException e) {
             System.out.println(library.Utility.getLibraryFileName() + " was not in the specified directory.");
-            return false;
         }
-        return true;
     }
 
 
