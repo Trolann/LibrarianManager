@@ -104,36 +104,6 @@ public class Utility {
         return returnMap;
     }
 
-    // returns a random media
-    public static String randomMedia() {
-        Stack<LibraryFunctions> stack = new Stack<>();
-        int size = 10;
-        while(stack.size() < size) {
-            stack.push(getRandom());
-        }
-        Scanner userInput = new Scanner(System.in);
-        do {
-            if(stack.isEmpty()) stack.push(getRandom());
-            LibraryFunctions peekedValue = stack.peek();
-            System.out.println("Do you want this media? " + peekedValue);
-            System.out.print("Please enter Y/N: ");
-            String input = userInput.next();
-            if(input.toUpperCase().equals("Y")) {
-                System.out.println("\nTake the media. " + peekedValue);
-                //search(Media title) ---> title ->store the popped value
-                stack.clear();
-                break;
-            }
-            else if( !input.toUpperCase().equals("Y") && !input.toUpperCase().equals("N"))
-                System.out.println("Please enter a valid Value");
-            else {
-                if(!stack.isEmpty()) stack.pop();
-            }
-            System.out.println();
-        } while(true);
-        return null; // needs to return title after calling the search method
-    }
-
     // returns a random Media
     public static LibraryFunctions getRandom() {
         Map<String, LibraryFunctions> mediaList = listMedia();
@@ -149,4 +119,3 @@ public class Utility {
         return null;
     }
 }
-
