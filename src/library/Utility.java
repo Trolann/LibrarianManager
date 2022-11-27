@@ -10,7 +10,7 @@ public class Utility {
     public static void main(String[] args) {
         //randomMedia();
         LibraryFrame mainGUI = new LibraryFrame();
-        mainGUI.setSize(1450, 170);
+        mainGUI.setSize(1200, 170);
 
     }
 
