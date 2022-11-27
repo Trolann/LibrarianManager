@@ -1,11 +1,12 @@
 package library.media;
-
 import library.LibraryFunctions;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.Objects;
-import java.io.*;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 import java.util.Scanner;
 
 public class Newspaper extends Media implements LibraryFunctions {
@@ -58,7 +59,7 @@ public class Newspaper extends Media implements LibraryFunctions {
 
     @Override
     public String displayInfo() {
-        return this.title + " written by " + this.creator;
+        return this.title + "  (Written by " + this.creator + " )";
     }
 
     @Override
@@ -79,7 +80,7 @@ public class Newspaper extends Media implements LibraryFunctions {
     public void checkIn() {
         //construct a File object with the name of the input file
         // then use the File object to construct a Scanner object
-        ArrayList<String> input = new ArrayList<>();
+        LinkedList<String> list = new LinkedList<>();
         try {
             Scanner inFile = new Scanner(new File(library.Utility.getLibraryFileName()));
             while (inFile.hasNextLine()) {
@@ -88,7 +89,7 @@ public class Newspaper extends Media implements LibraryFunctions {
                     readLine = readLine.replaceFirst("out", "in");
                     this.checkInOut();
                 }
-                input.add(readLine);
+                list.add(readLine);
             }
             inFile.close();
         }
@@ -96,7 +97,7 @@ public class Newspaper extends Media implements LibraryFunctions {
             System.out.println("File not found.");
         }
         try (PrintWriter fileWriter = new PrintWriter(library.Utility.getLibraryFileName())) {
-            for(String readLine: input) {
+            for(String readLine: list) {
                 fileWriter.println(readLine);
             }
         } catch (FileNotFoundException e) {
@@ -107,7 +108,7 @@ public class Newspaper extends Media implements LibraryFunctions {
     public void checkOut() {
         //construct a File object with the name of the input file
         // then use the File object to construct a Scanner object
-        ArrayList<String> input = new ArrayList<>();
+        LinkedList<String> list = new LinkedList<>();
         try {
             Scanner inFile = new Scanner(new File(library.Utility.getLibraryFileName()));
             while (inFile.hasNextLine()) {
@@ -116,7 +117,7 @@ public class Newspaper extends Media implements LibraryFunctions {
                     readLine = readLine.replaceFirst("in", "out");
                     this.checkInOut();
                 }
-                input.add(readLine);
+                list.add(readLine);
             }
             inFile.close();
         }
@@ -124,7 +125,7 @@ public class Newspaper extends Media implements LibraryFunctions {
             System.out.println("File not found.");
         }
         try (PrintWriter fileWriter = new PrintWriter(library.Utility.getLibraryFileName())) {
-            for(String readLine: input) {
+            for(String readLine: list) {
                 fileWriter.println(readLine);
             }
         } catch (FileNotFoundException e) {
