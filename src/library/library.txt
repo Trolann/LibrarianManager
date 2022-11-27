@@ -2,7 +2,7 @@ video,in,Venom Let There Be Carnage,Andy Serkis,Tom Hardy,97,6.8
 video,out,Eternals,Chloé Zhao,Gemma Chan,157,7.1
 video,in,Dune,Denis Villeneuve,Timothée Chalamet,155,8
 video,in,Army of Thieves,Matthias Schweighöfer,Matthias Schweighöfer,127,6.9
-video,in,Free Guy,Shawn Levy,Ryan Reynolds,115,7.8
+video,out,Free Guy,Shawn Levy,Ryan Reynolds,115,7.8
 video,in,Gunpowder Milkshake,Navot Papushado,Karen Gillan,114,6.5
 video,in,Venom,Ruben Fleischer,Tom Hardy,112,6.8
 video,in,Halloween Kills,David Gordon Green,Jamie Lee Curtis,105,7
@@ -11,7 +11,7 @@ video,out,The Addams Family 2,Greg Tiernan,Oscar Isaac,93,7.4
 video,in,Shang-Chi and the Legend of the Ten Rings,Destin Daniel Cretton,Simu Liu,132,7.7
 video,out,Snake Eyes: G.I. Joe Origins,Robert Schwentke,Henry Golding,121,6.9
 video,in,The Vault,Jaume Balagueró,Freddie Highmore,118,7.1
-video,out,The Deep House,Alexandre Bustillo,Camille Rowe,85,5.5
+video,in,The Deep House,Alexandre Bustillo,Camille Rowe,85,5.5
 audiobook,in,Think Like a Monk: The Secret of How to Harness the Power of Positivity and Be Happy Now,Jay Shetty,Unknown,654,4.9
 audiobook,in,Ikigai: The Japanese Secret to a Long and Happy Life,Héctor García,Unknown,103,4.6
 audiobook,in,The Subtle Art of Not Giving a F*ck: A Counterintuitive Approach to Living a Good Life,Mark Manson,Unknown,467,4.4

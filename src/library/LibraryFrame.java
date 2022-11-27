@@ -1,6 +1,9 @@
 package library;
 
+import javax.sound.midi.SysexMessage;
 import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.LinkedList;
 import java.util.Objects;
 
@@ -43,7 +46,12 @@ public class LibraryFrame extends JFrame{
         // Listeners
 
         // Pressing Search Button
-        searchButton.addActionListener(e -> updateLibraryUI(searchFilter));
+        searchButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                updateLibraryUI(searchFilter);
+            }
+        });
 
         // Pressing a radio button sets the search filter (of the objects .toString) and updates the UI
         bookRadioButton.addActionListener(e -> {
@@ -148,7 +156,8 @@ public class LibraryFrame extends JFrame{
                 // Short-circuits if no search string
                 if (_searchString.length() > 0 && value.displayInfo().toLowerCase().contains(_searchString.toLowerCase())) {
                     displayList.add(value);
-                } else {
+                }
+                if (_searchString.length() == 0) {
                     // If we're here it's because there's no title search, displayList should have all objects
                     displayList.add(value);
                 }
@@ -158,6 +167,7 @@ public class LibraryFrame extends JFrame{
 
         // Add all found elements to the drop-down
         for (LibraryFunctions mediaObject : displayList) {
+            System.out.println(mediaObject.displayInfo());
             searchResultsComboBox.addItem(mediaObject.displayInfo());
         }
 
