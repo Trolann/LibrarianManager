@@ -167,7 +167,6 @@ public class LibraryFrame extends JFrame{
 
         // Add all found elements to the drop-down
         for (LibraryFunctions mediaObject : displayList) {
-            System.out.println(mediaObject.displayInfo());
             searchResultsComboBox.addItem(mediaObject.displayInfo());
         }
 
