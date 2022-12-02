@@ -14,8 +14,7 @@ public class Newspaper extends Media implements LibraryFunctions {
     private LocalDate newspaperReleasedDate;
     private int newspaperISSN;
 
-
-    //Constructor
+    // This constructor takes a String of the entire line from the file, parse it, and then creates the object
     public Newspaper(String inputLine) {
         super(); // Must be first
         String[] values = inputLine.split(",", -1); // Split into known value locations
@@ -27,27 +26,23 @@ public class Newspaper extends Media implements LibraryFunctions {
         this.newspaperReleasedDate = LocalDate.parse(values[6]);
     }
 
-        public void setNewspaperPublisher(String newspaperPublisher) {
-            this.newspaperPublisher = newspaperPublisher;
-        }
-        public String getNewspaperPublisher() {
-            return newspaperPublisher;
-        }
+    // Setters
+    public void setNewspaperPublisher(String newspaperPublisher) {
+        this.newspaperPublisher = newspaperPublisher;
+    }
+    public void setNewspaperReleasedDate(LocalDate newspaperReleasedDate) {
+        this.newspaperReleasedDate = newspaperReleasedDate;
+    }
+    public void setNewspaperISSN(int newspaperISSN) {
+        this.newspaperISSN = newspaperISSN;
+    }
 
-        public void setNewspaperReleasedDate(LocalDate newspaperReleasedDate) {
-            this.newspaperReleasedDate = newspaperReleasedDate;
-        }
-        public LocalDate getNewspaperReleasedDate() {
-            return newspaperReleasedDate;
-        }
+    // Getters
+    public String getNewspaperPublisher() { return newspaperPublisher; }
+    public LocalDate getNewspaperReleasedDate() { return newspaperReleasedDate; }
+    public int getNewspaperISSN() { return newspaperISSN; }
 
-        public void setNewspaperISSN(int newspaperISSN) {
-            this.newspaperISSN = newspaperISSN;
-        }
-        public int getNewspaperISSN() {
-            return newspaperISSN;
-        }
-
+    // toString returns a String representation of the object
     @Override
     public String toString() {
         return "Newspaper{" +
@@ -59,23 +54,27 @@ public class Newspaper extends Media implements LibraryFunctions {
 
     @Override
     public String displayInfo() {
-        return this.title + "  (Written by " + this.creator + " )";
+        return this.getTitle() + "  (Written by " + this.creator + " )";
     }
 
+    // The equals method checks whether two objects are equal or not
+    // returns true if the key matches, false otherwise
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Newspaper newspaper)) return false;
-        return getNewspaperISSN() == newspaper.getNewspaperISSN() &&
-                getNewspaperPublisher().equals(newspaper.getNewspaperPublisher()) &&
-                getNewspaperReleasedDate().equals(newspaper.getNewspaperReleasedDate());
+    public boolean equals(Object obj) {
+        if (this == obj) return true;  // checks if they are same objects
+        // Checks whether the type of class is different or not or it's not a same object
+        if (!(obj instanceof Newspaper)) return false;
+        Newspaper other = (Newspaper) obj;
+        return Objects.equals(this.title, other.getTitle());
     }
 
+    // Returns the memory reference of an object in integer form
     @Override
     public int hashCode() {
-        return Objects.hash(getNewspaperPublisher(), getNewspaperReleasedDate(), getNewspaperISSN());
+        return Objects.hash(this.title);
     }
 
+    // checkIn method reads from the file, replace "in" with "out" for the desired title, then writes back to the file
     @Override
     public void checkIn() {
         //construct a File object with the name of the input file
@@ -104,6 +103,7 @@ public class Newspaper extends Media implements LibraryFunctions {
         }
     }
 
+    // checkOut method reads from the file, replace "out" with "in" for the desired title, then writes back to the file
     @Override
     public void checkOut() {
         //construct a File object with the name of the input file

@@ -15,6 +15,7 @@ public class eTextbook extends Media implements LibraryFunctions {
     private LocalDate eTextbookReleasedDate;
     private String eTextbookISBN;
 
+    // // This constructor takes a String of the entire line from the file, parse it, and then creates the object
     public eTextbook(String inputLine) {
         super();
         String[] values = inputLine.split(",");
@@ -26,27 +27,28 @@ public class eTextbook extends Media implements LibraryFunctions {
         this.eTextbookReleasedDate = LocalDate.parse(values[6]);
     }
 
+    // Setters
     public void seteTextbookPublisher(String eTextbookPublisher) {
         this.eTextbookPublisher = eTextbookPublisher;
     }
-    public String geteTextbookPublisher() {
-        return eTextbookPublisher;
-    }
-
     public void seteTextbookReleasedDate(LocalDate eTextbookReleasedDate) {
         this.eTextbookReleasedDate = eTextbookReleasedDate;
     }
-    public LocalDate geteTextbookReleasedDate() {
-        return eTextbookReleasedDate;
-    }
-
     public void seteTextbookISBN(String eTextbookISBN) {
         this.eTextbookISBN = eTextbookISBN;
+    }
+    // Getters
+    public String geteTextbookPublisher() {
+        return eTextbookPublisher;
+    }
+    public LocalDate geteTextbookReleasedDate() {
+        return eTextbookReleasedDate;
     }
     public String geteTextbookISBN() {
         return eTextbookISBN;
     }
 
+    // toString returns a String representation of the object
     @Override
     public String toString() {
         return "eTextbook{" +
@@ -58,23 +60,27 @@ public class eTextbook extends Media implements LibraryFunctions {
 
     @Override
     public String displayInfo() {
-        return this.title + "  (Written by " + this.creator + " )";
+        return this.getTitle() + "  (Written by " + this.creator + " )";
     }
 
+    // The equals method checks whether two objects are equal or not
+    // returns true if the key matches, false otherwise
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof eTextbook eTextbook)) return false;
-        return geteTextbookISBN() == eTextbook.geteTextbookISBN() &&
-                geteTextbookPublisher().equals(eTextbook.geteTextbookPublisher()) &&
-                geteTextbookReleasedDate().equals(eTextbook.geteTextbookReleasedDate());
+    public boolean equals(Object obj) {
+        if (this == obj) return true;   // checks if they are same objects
+        // Checks whether the type of class is different or not or it's not a same object
+        if (!(obj instanceof eTextbook)) return false;
+        eTextbook other = (eTextbook) obj;
+        return Objects.equals(this.title, other.getTitle());
     }
 
+    // Returns the memory reference of an object in integer form
     @Override
     public int hashCode() {
-        return Objects.hash(geteTextbookPublisher(), geteTextbookReleasedDate(), geteTextbookISBN());
+        return Objects.hash(this.title);
     }
 
+    // checkIn method reads from the file, replace "in" with "out" for the desired title, then writes back to the file
     @Override
     public void checkIn() {
         //construct a File object with the name of the input file
@@ -103,6 +109,7 @@ public class eTextbook extends Media implements LibraryFunctions {
         }
     }
 
+    // checkOut method reads from the file, replace "out" with "in" for the desired title, then writes back to the file
     @Override
     public void checkOut() {
         //construct a File object with the name of the input file
