@@ -1,20 +1,48 @@
 # LibrarianManager
-
-TODO: Make a readme.md
-
-
-# Installation instructions
+###### Written by: [Trevor Mathisen](https://github.com/Trolann), [Zohreh Ashtarilarki](https://github.com/ZohrehAshtarilarki) [and Osman Saeday](https://github.com/osmansaeday)
+### Installation instructions
 1) Developed using JDK 18
 2) Create Run confliguration in IntellIJ
 3) Run the PSVM in Utility.java
-
+# ^^^^ TODO: This section ^^^^
 # Class Descriptions
 
 ## Media
 
 
 ## Utility
+### Main/GUI Function
 
+```java
+public static void main(String[] args)
+```
+
+### Common filename primitive
+```java
+public final static String libraryFileName
+```
+
+### Common filename getter
+```java
+public static String getLibraryFileName()
+```
+
+### Recursive Scanner function
+```java
+public static HashMap<String, LibraryFunctions> _listMedia(HashMap<String, 
+                                                           LibraryFunctions> _returnMap, 
+                                                           Scanner _fileScanner)
+```
+
+### Media getter (all)
+```java
+public static HashMap<String, LibraryFunctions> listMedia()
+```
+
+### Media getter (random)
+```java
+public static LibraryFunctions getRandom()
+```
 
 ### Video
 #### ***Constructor***
