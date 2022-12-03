@@ -9,10 +9,11 @@ import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.util.Scanner;
 
+
 public class Newspaper extends Media implements LibraryFunctions {
-    private String newspaperPublisher;
-    private LocalDate newspaperReleasedDate;
-    private int newspaperISSN;
+    private final String newspaperPublisher;
+    private final LocalDate newspaperReleasedDate;
+    private final int newspaperISSN;
 
     // This constructor takes a String of the entire line from the file, parse it, and then creates the object
     public Newspaper(String inputLine) {
@@ -26,17 +27,6 @@ public class Newspaper extends Media implements LibraryFunctions {
         this.newspaperReleasedDate = LocalDate.parse(values[6]);
     }
 
-    // Setters
-    public void setNewspaperPublisher(String newspaperPublisher) {
-        this.newspaperPublisher = newspaperPublisher;
-    }
-    public void setNewspaperReleasedDate(LocalDate newspaperReleasedDate) {
-        this.newspaperReleasedDate = newspaperReleasedDate;
-    }
-    public void setNewspaperISSN(int newspaperISSN) {
-        this.newspaperISSN = newspaperISSN;
-    }
-
     // Getters
     public String getNewspaperPublisher() { return newspaperPublisher; }
     public LocalDate getNewspaperReleasedDate() { return newspaperReleasedDate; }
@@ -46,9 +36,9 @@ public class Newspaper extends Media implements LibraryFunctions {
     @Override
     public String toString() {
         return "Newspaper{" +
-                "newspaperPublisher='" + newspaperPublisher + '\'' +
-                ", newspaperReleasedDate=" + newspaperReleasedDate +
-                ", newspaperISSN=" + newspaperISSN +
+                "newspaperPublisher='" + getNewspaperPublisher() + '\'' +
+                ", newspaperReleasedDate=" + getNewspaperReleasedDate() +
+                ", newspaperISSN=" + getNewspaperISSN() +
                 '}';
     }
 
@@ -93,13 +83,14 @@ public class Newspaper extends Media implements LibraryFunctions {
             inFile.close();
         }
         catch (FileNotFoundException e) {
-            System.out.println("File not found.");
+            System.out.println(library.Utility.getLibraryFileName() + " was not found.");
         }
         try (PrintWriter fileWriter = new PrintWriter(library.Utility.getLibraryFileName())) {
             for(String readLine: list) {
                 fileWriter.println(readLine);
             }
         } catch (FileNotFoundException e) {
+            System.out.println(library.Utility.getLibraryFileName() + " was not found.");
         }
     }
 
@@ -122,13 +113,14 @@ public class Newspaper extends Media implements LibraryFunctions {
             inFile.close();
         }
         catch (FileNotFoundException e) {
-            System.out.println("File not found.");
+            System.out.println(library.Utility.getLibraryFileName() + " was not found.");
         }
         try (PrintWriter fileWriter = new PrintWriter(library.Utility.getLibraryFileName())) {
             for(String readLine: list) {
                 fileWriter.println(readLine);
             }
         } catch (FileNotFoundException e) {
+            System.out.println(library.Utility.getLibraryFileName() + " was not found.");
         }
     }
 }

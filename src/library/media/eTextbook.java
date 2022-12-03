@@ -11,9 +11,9 @@ import java.io.PrintWriter;
 import java.util.Scanner;
 
 public class eTextbook extends Media implements LibraryFunctions {
-    private String eTextbookPublisher;
-    private LocalDate eTextbookReleasedDate;
-    private String eTextbookISBN;
+    private final String eTextbookPublisher;
+    private final LocalDate eTextbookReleasedDate;
+    private final String eTextbookISBN;
 
     // // This constructor takes a String of the entire line from the file, parse it, and then creates the object
     public eTextbook(String inputLine) {
@@ -27,16 +27,6 @@ public class eTextbook extends Media implements LibraryFunctions {
         this.eTextbookReleasedDate = LocalDate.parse(values[6]);
     }
 
-    // Setters
-    public void seteTextbookPublisher(String eTextbookPublisher) {
-        this.eTextbookPublisher = eTextbookPublisher;
-    }
-    public void seteTextbookReleasedDate(LocalDate eTextbookReleasedDate) {
-        this.eTextbookReleasedDate = eTextbookReleasedDate;
-    }
-    public void seteTextbookISBN(String eTextbookISBN) {
-        this.eTextbookISBN = eTextbookISBN;
-    }
     // Getters
     public String geteTextbookPublisher() {
         return eTextbookPublisher;
@@ -52,9 +42,9 @@ public class eTextbook extends Media implements LibraryFunctions {
     @Override
     public String toString() {
         return "eTextbook{" +
-                "eTextbookPublisher='" + eTextbookPublisher + '\'' +
-                ", eTextbookReleasedDate=" + eTextbookReleasedDate +
-                ", eTextbookISBN=" + eTextbookISBN +
+                "eTextbookPublisher='" + geteTextbookPublisher() + '\'' +
+                ", eTextbookReleasedDate=" + geteTextbookReleasedDate() +
+                ", eTextbookISBN=" + geteTextbookISBN() +
                 '}';
     }
 
@@ -99,13 +89,14 @@ public class eTextbook extends Media implements LibraryFunctions {
             inFile.close();
         }
         catch (FileNotFoundException e) {
-            System.out.println("File not found.");
+            System.out.println(library.Utility.getLibraryFileName() + " was not found.");
         }
         try (PrintWriter fileWriter = new PrintWriter(library.Utility.getLibraryFileName())) {
             for(String readLine: list) {
                 fileWriter.println(readLine);
             }
         } catch (FileNotFoundException e) {
+            System.out.println(library.Utility.getLibraryFileName() + " was not found.");
         }
     }
 
@@ -128,13 +119,14 @@ public class eTextbook extends Media implements LibraryFunctions {
             inFile.close();
         }
         catch (FileNotFoundException e) {
-            System.out.println("File not found.");
+            System.out.println(library.Utility.getLibraryFileName() + " was not found.");
         }
         try (PrintWriter fileWriter = new PrintWriter(library.Utility.getLibraryFileName())) {
             for(String readLine: list) {
                 fileWriter.println(readLine);
             }
         } catch (FileNotFoundException e) {
+            System.out.println(library.Utility.getLibraryFileName() + " was not found.");
         }
     }
 }
