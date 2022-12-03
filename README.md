@@ -170,3 +170,54 @@ public String displayOtherInfo()
 ```java
 private void handler(boolean checkInMedia) 
 ```
+
+
+
+### Newspaper
+#### ***Constructor***
+```java
+Newspaper(String inputLine)
+```
+
+#### *Primitives*
+```java
+private final String newspaperPublisher;
+private final LocalDate newspaperReleasedDate;
+private final int newspaperISSN;
+```
+
+#### *Overridden Methods*
+
+```java
+public String toString()
+public String displayInfo()
+public boolean equals(Object obj)
+public int hashCode()
+public void checkIn()
+public void checkOut()
+```
+
+
+### eTextbook
+#### ***Constructor***
+```java
+eTextbook(String inputLine)
+```
+
+#### *Primitives*
+```java
+private final String eTextbookPublisher;
+private final LocalDate eTextbookReleasedDate;
+private final String eTextbookISBN;
+```
+
+#### *Overridden Methods*
+
+```java
+public String toString()
+public String displayInfo()
+public boolean equals(Object obj)
+public int hashCode()
+public void checkIn()
+public void checkOut()
+```
