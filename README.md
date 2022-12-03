@@ -107,3 +107,66 @@ public String displayOtherInfo()
 ```java
 private boolean _checkInOut(boolean checkInMedia) {
 ```
+
+### Book
+#### ***Constructor***
+```java
+Book(String inputLine)
+```
+
+#### *Primitives*
+```java
+private final String bookPublisher;
+private final String bookISSN;
+private final localdate bookPublicationDate;
+```
+
+#### *Overridden Methods*
+
+```java
+public String displayInfo()
+public String toString()
+public boolean equals(Object o)
+public int hashCode()
+public void checkIn() 
+public void checkOut() 
+public String displayOtherInfo()
+```
+
+
+#### *Helper Method*
+```java
+private void handler(boolean checkInMedia) 
+```
+
+
+### Book
+#### ***Constructor***
+```java
+Book(String inputLine)
+```
+
+#### *Primitives*
+```java
+private final String pulishedPaperTopic;
+private final String publishedPaperISSN;
+private final localdate publishedPaperPublicationDate;
+```
+
+#### *Overridden Methods*
+
+```java
+public String displayInfo()
+public String toString()
+public boolean equals(Object o)
+public int hashCode()
+public void checkIn() 
+public void checkOut() 
+public String displayOtherInfo()
+```
+
+
+#### *Helper Method*
+```java
+private void handler(boolean checkInMedia) 
+```
