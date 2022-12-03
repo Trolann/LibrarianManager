@@ -27,24 +27,13 @@ public class eTextbook extends Media implements LibraryFunctions {
         this.eTextbookReleasedDate = LocalDate.parse(values[6]);
     }
 
-    // Getters
-    public String geteTextbookPublisher() {
-        return eTextbookPublisher;
-    }
-    public LocalDate geteTextbookReleasedDate() {
-        return eTextbookReleasedDate;
-    }
-    public String geteTextbookISBN() {
-        return eTextbookISBN;
-    }
-
     // toString returns a String representation of the object
     @Override
     public String toString() {
         return "eTextbook{" +
-                "eTextbookPublisher='" + geteTextbookPublisher() + '\'' +
-                ", eTextbookReleasedDate=" + geteTextbookReleasedDate() +
-                ", eTextbookISBN=" + geteTextbookISBN() +
+                "eTextbookPublisher='" + this.eTextbookPublisher + '\'' +
+                ", eTextbookReleasedDate=" + this.eTextbookReleasedDate +
+                ", eTextbookISBN=" + this.eTextbookISBN +
                 '}';
     }
 
@@ -58,9 +47,8 @@ public class eTextbook extends Media implements LibraryFunctions {
     @Override
     public boolean equals(Object obj) {
         if (this == obj) return true;   // checks if they are same objects
-        // Checks whether the type of class is different or not or it's not a same object
-        if (!(obj instanceof eTextbook)) return false;
-        eTextbook other = (eTextbook) obj;
+        // Checks if the type of class is different, or it's not a same object
+        if (!(obj instanceof eTextbook other)) return false;
         return Objects.equals(this.title, other.getTitle());
     }
 
@@ -70,7 +58,7 @@ public class eTextbook extends Media implements LibraryFunctions {
         return Objects.hash(this.title);
     }
 
-    // checkIn method reads from the file, replace "in" with "out" for the desired title, then writes back to the file
+    // checkIn method reads from the file, replace "in" with "out" for the selected item, then writes back to the file
     @Override
     public void checkIn() {
         //construct a File object with the name of the input file
@@ -89,18 +77,18 @@ public class eTextbook extends Media implements LibraryFunctions {
             inFile.close();
         }
         catch (FileNotFoundException e) {
-            System.out.println(library.Utility.getLibraryFileName() + " was not found.");
+            System.out.println("Could not open file " + library.Utility.getLibraryFileName());
         }
         try (PrintWriter fileWriter = new PrintWriter(library.Utility.getLibraryFileName())) {
             for(String readLine: list) {
                 fileWriter.println(readLine);
             }
         } catch (FileNotFoundException e) {
-            System.out.println(library.Utility.getLibraryFileName() + " was not found.");
+            System.out.println("Could not open file " + library.Utility.getLibraryFileName());
         }
     }
 
-    // checkOut method reads from the file, replace "out" with "in" for the desired title, then writes back to the file
+    // checkOut method reads from the file, replace "out" with "in" for the selected item, then writes back to the file
     @Override
     public void checkOut() {
         //construct a File object with the name of the input file
@@ -119,14 +107,14 @@ public class eTextbook extends Media implements LibraryFunctions {
             inFile.close();
         }
         catch (FileNotFoundException e) {
-            System.out.println(library.Utility.getLibraryFileName() + " was not found.");
+            System.out.println("Could not open file " + library.Utility.getLibraryFileName());
         }
         try (PrintWriter fileWriter = new PrintWriter(library.Utility.getLibraryFileName())) {
             for(String readLine: list) {
                 fileWriter.println(readLine);
             }
         } catch (FileNotFoundException e) {
-            System.out.println(library.Utility.getLibraryFileName() + " was not found.");
+            System.out.println("Could not open file " + library.Utility.getLibraryFileName());
         }
     }
 }

@@ -17,8 +17,8 @@ public class Newspaper extends Media implements LibraryFunctions {
 
     // This constructor takes a String of the entire line from the file, parse it, and then creates the object
     public Newspaper(String inputLine) {
-        super(); // Must be first
-        String[] values = inputLine.split(",", -1); // Split into known value locations
+        super();
+        String[] values = inputLine.split(",");
         this.checkedIn = values[1].equals("in");
         this.title = values[2];
         this.creator = values[3];
@@ -27,18 +27,13 @@ public class Newspaper extends Media implements LibraryFunctions {
         this.newspaperReleasedDate = LocalDate.parse(values[6]);
     }
 
-    // Getters
-    public String getNewspaperPublisher() { return newspaperPublisher; }
-    public LocalDate getNewspaperReleasedDate() { return newspaperReleasedDate; }
-    public int getNewspaperISSN() { return newspaperISSN; }
-
     // toString returns a String representation of the object
     @Override
     public String toString() {
         return "Newspaper{" +
-                "newspaperPublisher='" + getNewspaperPublisher() + '\'' +
-                ", newspaperReleasedDate=" + getNewspaperReleasedDate() +
-                ", newspaperISSN=" + getNewspaperISSN() +
+                "newspaperPublisher='" + this.newspaperPublisher + '\'' +
+                ", newspaperReleasedDate=" + this.newspaperReleasedDate +
+                ", newspaperISSN=" + this.newspaperISSN +
                 '}';
     }
 
@@ -52,9 +47,8 @@ public class Newspaper extends Media implements LibraryFunctions {
     @Override
     public boolean equals(Object obj) {
         if (this == obj) return true;  // checks if they are same objects
-        // Checks whether the type of class is different or not or it's not a same object
-        if (!(obj instanceof Newspaper)) return false;
-        Newspaper other = (Newspaper) obj;
+        // Checks if the type of class is different, or it's not a same object
+        if (!(obj instanceof Newspaper other)) return false;
         return Objects.equals(this.title, other.getTitle());
     }
 
@@ -64,7 +58,7 @@ public class Newspaper extends Media implements LibraryFunctions {
         return Objects.hash(this.title);
     }
 
-    // checkIn method reads from the file, replace "in" with "out" for the desired title, then writes back to the file
+    // checkIn method reads from the file, replace "in" with "out" for the selected item, then writes back to the file
     @Override
     public void checkIn() {
         //construct a File object with the name of the input file
@@ -83,18 +77,18 @@ public class Newspaper extends Media implements LibraryFunctions {
             inFile.close();
         }
         catch (FileNotFoundException e) {
-            System.out.println(library.Utility.getLibraryFileName() + " was not found.");
+            System.out.println("Could not open file " + library.Utility.getLibraryFileName());
         }
         try (PrintWriter fileWriter = new PrintWriter(library.Utility.getLibraryFileName())) {
             for(String readLine: list) {
                 fileWriter.println(readLine);
             }
         } catch (FileNotFoundException e) {
-            System.out.println(library.Utility.getLibraryFileName() + " was not found.");
+            System.out.println("Could not open file " + library.Utility.getLibraryFileName());
         }
     }
 
-    // checkOut method reads from the file, replace "out" with "in" for the desired title, then writes back to the file
+    // checkOut method reads from the file, replace "out" with "in" for the selected item, then writes back to the file
     @Override
     public void checkOut() {
         //construct a File object with the name of the input file
@@ -113,14 +107,14 @@ public class Newspaper extends Media implements LibraryFunctions {
             inFile.close();
         }
         catch (FileNotFoundException e) {
-            System.out.println(library.Utility.getLibraryFileName() + " was not found.");
+            System.out.println("Could not open file " + library.Utility.getLibraryFileName());
         }
         try (PrintWriter fileWriter = new PrintWriter(library.Utility.getLibraryFileName())) {
             for(String readLine: list) {
                 fileWriter.println(readLine);
             }
         } catch (FileNotFoundException e) {
-            System.out.println(library.Utility.getLibraryFileName() + " was not found.");
+            System.out.println("Could not open file " + library.Utility.getLibraryFileName());
         }
     }
 }
