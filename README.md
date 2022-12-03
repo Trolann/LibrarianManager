@@ -140,10 +140,10 @@ private void handler(boolean checkInMedia)
 ```
 
 
-### Book
+### PublishedPaper
 #### ***Constructor***
 ```java
-Book(String inputLine)
+PublishedPaper(String inputLine)
 ```
 
 #### *Primitives*
