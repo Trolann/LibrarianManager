@@ -41,7 +41,7 @@ public class Video extends Media implements LibraryFunctions {
     // Overridden functions
     @Override
     public String displayInfo() {
-        return this.getTitle() + " Directed by: " + this.getVideoDirector();
+        return this.getTitle() + " Directed by: " + this.videoDirector;
     }
 
     @Override
@@ -82,12 +82,7 @@ public class Video extends Media implements LibraryFunctions {
     // Public functions
     // Created to silence IDE warnings
     public String displayOtherInfo() {
-        return "Starring: " + this.videoStarActor + " " + this.videoRuntime + " minutes. Rated: " + this.videoRating + "/10";
-    }
-
-    // Getter
-    public String getVideoDirector() {
-        return videoDirector;
+        return "Starring: " + this.videoStarActor + " " + this.videoRuntime + " minutes. Rated: " + this.videoRating + "/10 " + this.videoDirector;
     }
 
     // Single function to open a file and rewrite to it. Boolean determines the value
