@@ -1,10 +1,12 @@
 # LibrarianManager
 ###### Written by: [Trevor Mathisen](https://github.com/Trolann), [Zohreh Ashtarilarki](https://github.com/ZohrehAshtarilarki) [and Osman Saeday](https://github.com/osmansaeday)
+###### YouTube Video: [https://youtu.be/P5EPoCfXCiI](https://youtu.be/P5EPoCfXCiI)
 ### Installation instructions
 1) Developed using JDK 18
 2) Create Run confliguration in IntellIJ
 3) Run the PSVM in Utility.java
-# ^^^^ TODO: This section ^^^^
+
+
 # Class Descriptions
 
 ## Media
