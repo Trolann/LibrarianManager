@@ -2,9 +2,21 @@
 ###### Written by: [Trevor Mathisen](https://github.com/Trolann), [Zohreh Ashtarilarki](https://github.com/ZohrehAshtarilarki) [and Osman Saeday](https://github.com/osmansaeday)
 ###### YouTube Video: [https://youtu.be/P5EPoCfXCiI](https://youtu.be/P5EPoCfXCiI)
 ### Installation instructions
-1) Developed using JDK 18
-2) Create Run confliguration in IntellIJ
-3) Run the PSVM in Utility.java
+1) Developed using JDK 19
+2) Ensure the following packages are installed:
+   - java.io.*
+   - java.util.*
+   - java.time.*
+   - javax.swing.*
+   - java.awt.event.*
+2) Main method contained in library.Utility
+3) Run 
+
+java.io
+java.util
+java.time
+javax.swing
+java.awt.event
 
 
 # Class Descriptions
@@ -19,17 +31,17 @@
 public static void main(String[] args)
 ```
 
-### Common filename primitive
+### Common filename primitive and getter
 ```java
 public final static String libraryFileName
-```
-
-### Common filename getter
-```java
 public static String getLibraryFileName()
 ```
 
 ### Recursive Scanner function
+```
+This function is called by listMedia and recursively scans _fileScanner
+and returns a completed hashMap _returnMap.
+```
 ```java
 public static HashMap<String, LibraryFunctions> _listMedia(HashMap<String, 
                                                            LibraryFunctions> _returnMap, 
@@ -37,6 +49,10 @@ public static HashMap<String, LibraryFunctions> _listMedia(HashMap<String,
 ```
 
 ### Media getter (all)
+```
+This method is called by the GUI and returns a hashMap of all available media
+by calling the recursive _listMedia function.
+```
 ```java
 public static HashMap<String, LibraryFunctions> listMedia()
 ```
@@ -48,6 +64,9 @@ public static LibraryFunctions getRandom()
 
 ### Video
 #### ***Constructor***
+```
+The only constructor takes in the entire input line and parses it
+```
 ```java
 Video(String inputLine)
 ```
@@ -63,13 +82,20 @@ private int videoRuntime;
 #### *Overridden functions*
 
 ```java
-public String displayInfo()
-public String toString()
-public boolean equals(Object o)
-public int hashCode()
+public String displayInfo() // Display info to GUI
+public String toString() // Parse information to debug string
+public boolean equals(Object o) // For hashing
+public int hashCode() // for hashing
+
+```
+
+```
 public void checkIn() // Wrapper function to _checkInOut
 public void checkOut() // Wrapper function to _checkInOut
-public String displayOtherInfo()
+
+```
+```
+public String displayOtherInfo() // Created to quiet down IDE
 ```
 
 
@@ -78,36 +104,20 @@ public String displayOtherInfo()
 private boolean _checkInOut(boolean checkInMedia) {
 ```
 ### Audiobook
+```
+See Video class for method descriptions
+```
 #### ***Constructor***
 ```java
-Video(String inputLine)
+Audiobook(String inputLine)
 ```
 
 #### *Primitives*
 ```java
-private final String bookAuthor;
-private final String readBy;
-private final int bookRating;
-private final int listeningTime;
-```
-```java
-AudioBook(String inputLine)
-```
-#### *Overridden functions*
-
-```java
-public String displayInfo()
-public String toString()
-public boolean equals(Object o)
-public int hashCode()
-public void checkIn() // Wrapper function to _checkInOut
-public void checkOut() // Wrapper function to _checkInOut
-public String displayOtherInfo()
-```
-
-#### *Check-in/out *
-```java
-private boolean _checkInOut(boolean checkInMedia) {
+private final String bookAuthor; // And associated getter
+private final String readBy; // And associated getter
+private final int bookRating; // And associated getter
+private final int listeningTime; // And associated getter
 ```
 
 ### Book
