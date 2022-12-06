@@ -1,6 +1,7 @@
 # LibrarianManager
 ###### Written by: [Trevor Mathisen](https://github.com/Trolann), [Zohreh Ashtarilarki](https://github.com/ZohrehAshtarilarki) [and Osman Saeday](https://github.com/osmansaeday)
 ###### YouTube Video: [https://youtu.be/P5EPoCfXCiI](https://youtu.be/P5EPoCfXCiI)
+###### Github Link: [https://github.com/Trolann/LibrarianManager](https://github.com/Trolann/LibrarianManager)
 ### Installation instructions
 1) Developed using JDK 19
 2) Ensure the following packages are installed:
@@ -15,7 +16,38 @@
 # Class Descriptions
 
 ## Media
+#### ***Constructor***
+```java
+public Media(String mediaTitle, String creator, boolean checkedIn)
+```
 
+#### *Primitives*
+```java
+protected String creator;
+protected String title;
+protected boolean checkedIn;
+```
+
+#### *Abstract Methods*
+
+```java
+abstract public String displayInfo(); 
+abstract public String toString();
+abstract public int hashCode();
+```
+
+#### *Public Methods*
+
+```java
+public boolean isCheckedIn(); //returns a boolean value of whether or not a media object has been checked in 
+public void checkInOut(); //reverses the isCheckedIn status of a media object
+```
+
+#### *Overridden Methods*
+
+```java
+public int compareTo(Media media) //compares two media objects based on the alphabetical order of their title
+```
 
 ## Utility
 ### Main/GUI Function
@@ -129,19 +161,17 @@ private final localdate bookPublicationDate;
 #### *Overridden Methods*
 
 ```java
-public String displayInfo()
-public String toString()
-public boolean equals(Object o)
-public int hashCode()
-public void checkIn() 
-public void checkOut() 
-public String displayOtherInfo()
+public String displayInfo() //displays the title and author of book 
+public String toString() //returns a String of the book object
+public int hashCode() //hashes object based on title
+public void checkIn()  //wrapper method for checking in 
+public void checkOut() //wrapper method for checking out
 ```
 
 
 #### *Helper Method*
 ```java
-private void handler(boolean checkInMedia) 
+private void handler(boolean checkInMedia) //checks a book object in or out based on the boolean arg
 ```
 
 
@@ -161,21 +191,18 @@ private final localdate publishedPaperPublicationDate;
 #### *Overridden Methods*
 
 ```java
-public String displayInfo()
-public String toString()
-public boolean equals(Object o)
-public int hashCode()
-public void checkIn() 
-public void checkOut() 
-public String displayOtherInfo()
+public String displayInfo() //displays the title and author of publishedPaper 
+public String toString() //returns a String of the publishedPaper object
+public int hashCode() //hashes object based on title
+public void checkIn()  //wrapper method for checking in 
+public void checkOut() //wrapper method for checking out
 ```
 
 
 #### *Helper Method*
 ```java
-private void handler(boolean checkInMedia) 
+private void handler(boolean checkInMedia) //checks a publishedPaper object in or out based on the boolean arg
 ```
-
 
 
 ### Newspaper
